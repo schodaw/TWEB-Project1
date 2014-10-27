@@ -22,22 +22,6 @@ header#banner.hero-unit
       input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
       span.input-group-btn
         button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
-        
-    h1 'Previous/Next' example
-    div
-      button#prev(ng-click='onPrevPage()') Previous
-      button#next(ng-click='onNextPage()') Next
-      span
-        | Page:
-        span#page_num
-        | /
-        span#page_count
-    div
-      canvas#the-canvas(style='border:1px solid black')
-    // for legacy browsers add compatibility.js
-    // <script src="../compatibility.js"></script>
-    
-    script(src='components/pdfjs/pdf.js')
 
 footer.footer
   .container

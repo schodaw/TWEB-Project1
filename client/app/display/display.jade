@@ -1,0 +1,21 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container.center-block
+  .row
+    .col-md-9.col-centered
+      h1 'Previous/Next' example
+      div
+        button#prev(ng-click='onPrevPage()') Previous
+        button#next(ng-click='onNextPage()') Next
+        span
+          | Page:
+          span#page_num
+          | /
+          span#page_count
+      canvas#the-canvas(style='border:1px solid black')
+    .col-md-3.col-centered
+      .row
+        .col-centered
+          h1 Chat
+      .row
+        .col-centered
+          h1 Mood
