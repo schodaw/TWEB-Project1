@@ -11,6 +11,7 @@ angular.module('twebProject1App')
       if(form.$valid) {
         Auth.createUser({
           name: $scope.user.name,
+		  role: $scope.user.role,
           email: $scope.user.email,
           password: $scope.user.password
         })
