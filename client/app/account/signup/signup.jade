@@ -11,8 +11,8 @@ div(ng-include='"components/navbar/navbar.html"')
           input.form-control(type='text', name='name', ng-model='user.name', required='')
           p.help-block(ng-show='form.name.$error.required && submitted')
             | A name is required
-			
-		.form-group(ng-class='{ "has-success": form.role.$valid && submitted,\
+
+        .form-group(ng-class='{ "has-success": form.role.$valid && submitted,\
         "has-error": form.role.$invalid && submitted }')
           label Role
           input.form-control(type='text', name='role', ng-model='user.role', required='')
