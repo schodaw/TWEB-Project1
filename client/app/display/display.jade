@@ -16,6 +16,15 @@ div(ng-include='"components/navbar/navbar.html"')
       .row
         .col-centered
           h1 Chat
+          div.row(ng-repeat='chat in chatMessages')
+            div.col-md-3.col-centered {{chat.author}}:
+            div.col-md-9.col-centered {{chat.content}}
+          #chatContent
+          form
+            p.input-group
+              input.form-control(type='text', placeholder='Ecrire un message.', ng-model='newMessage')
+              span.input-group-btn
+                button.btn.btn-primary(type='submit', ng-click='addMessage()') Send
       .row
         .col-centered
           h1 Mood

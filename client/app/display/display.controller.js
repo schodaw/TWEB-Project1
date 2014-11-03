@@ -1,7 +1,35 @@
 'use strict';
 
 angular.module('twebProject1App')
-  .controller('DisplayCtrl', function ($scope) {
+  .controller('DisplayCtrl', function ($scope, $http, socket, Auth) {
+    
+    $scope.chatMessages = [];
+    
+    getChatMessages();
+    
+    function getChatMessages() {
+        $http.get('/api/chats').success(function(chatMessages) {
+            $scope.chatMessages = chatMessages;
+            socket.syncUpdates('chatMessages', $scope.chatMessages);
+        });
+    }
+
+    $scope.addMessage = function() {
+      if($scope.newMessage === '') {
+        return;
+      }
+      $http.post('/api/chats', { author: Auth.getCurrentUser().name, content: $scope.newMessage });
+      $scope.newMessage = '';
+      //refresh messages from the chat to display the new message
+      getChatMessages();
+    };
+    
+    
+    
+    /*
+    *   PDFJS
+    *  
+    */
 	
 	//
     // If absolute URL from the remote server is provided, configure the CORS
