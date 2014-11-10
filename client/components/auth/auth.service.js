@@ -135,7 +135,15 @@ angular.module('twebProject1App')
       isAdmin: function() {
         return currentUser.role === 'admin';
       },
-
+        
+      isStudent: function() {
+        return currentUser.role === 'student';
+      },
+        
+      isTeacher: function() {
+        return currentUser.role === 'teacher';
+      },
+        
       /**
        * Get auth token
        */

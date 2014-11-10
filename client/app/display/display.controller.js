@@ -18,7 +18,8 @@ angular.module('twebProject1App')
       if($scope.newMessage === '') {
         return;
       }
-      $http.post('/api/chats', { author: Auth.getCurrentUser().name, content: $scope.newMessage });
+      var date = new Date();
+      $http.post('/api/chats', { time: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(), author: Auth.getCurrentUser().name, content: $scope.newMessage });
       $scope.newMessage = '';
       //refresh messages from the chat to display the new message
       getChatMessages();

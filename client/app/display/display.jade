@@ -1,7 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container.center-block
   .row
-    .col-md-9.col-centered
+    .col-md-8.col-centered
       h1 'Previous/Next' example
       div
         button#prev(ng-click='onPrevPage()') Previous
@@ -12,13 +12,14 @@ div(ng-include='"components/navbar/navbar.html"')
           | /
           span#page_count
       canvas#the-canvas(style='border:1px solid black')
-    .col-md-3.col-centered
+    .col-md-4.col-centered
       .row
         .col-centered
           h1 Chat
-          div.row(ng-repeat='chat in chatMessages')
-            div.col-md-3.col-centered {{chat.author}}:
-            div.col-md-9.col-centered {{chat.content}}
+          .row(ng-repeat='chat in chatMessages')
+            .col-md-3.col-centered ({{chat.time}})
+            .col-md-2.col-centered {{chat.author}}:
+            .col-md-6.col-centered {{chat.content}}
           #chatContent
           form
             p.input-group
