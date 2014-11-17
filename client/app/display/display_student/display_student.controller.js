@@ -3,15 +3,20 @@
 angular.module('twebProject1App')
   .controller('DisplayStudentCtrl', function ($scope, $http, socket, $location, Auth) {
     
+    $scope.lectureId = $location.search().lecture
+    
     /*
     * Chat
     */
     
     $scope.chatMessages = [];
     
-    $http.get('/api/chats').success(function(chatMessages) {
+    //get chat messages of lecture
+    $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
         $scope.chatMessages = chatMessages;
-        socket.syncUpdates('chat', $scope.chatMessages);
+        socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
+            $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
+        });
     });
 
     //add a message to the chat
@@ -20,7 +25,7 @@ angular.module('twebProject1App')
         return;
       }
       var date = new Date();
-      $http.post('/api/chats', { time: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(), author: Auth.getCurrentUser().name, content: $scope.newMessage });
+      $http.post('/api/chats', { lectureId: $scope.lectureId, time: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(), author: Auth.getCurrentUser().name, content: $scope.newMessage });
       $scope.newMessage = '';
     };
     
@@ -28,16 +33,16 @@ angular.module('twebProject1App')
     /*
     *   PDFJS
     */
-
+    
     var pdfDoc = null,
       pageNum = 1,
       pageRendering = false,
       pageNumPending = null,
       scale = 0.8,
       canvas = document.getElementById('the-canvas'),
-      ctx = canvas.getContext('2d');    
+      ctx = canvas.getContext('2d');
     
-    $http.get('/api/lectures/' + $location.search().lecture).success(function(lecture) {
+    $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
 
         pageNum = lecture.currentPage;
         
@@ -105,7 +110,9 @@ angular.module('twebProject1App')
     * receive event from teacher
     */
     socket.socket.on('changePage', function(data) {
-        pageNum = data.pageNum;
-        renderPage(data.pageNum);
+        if(data.lectureId === $scope.lectureId) {
+            pageNum = data.pageNum;
+            renderPage(data.pageNum);
+        }
     });
   });

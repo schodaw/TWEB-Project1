@@ -3,6 +3,8 @@
 var _ = require('lodash');
 var Lecture = require('./lecture.model');
 
+var Chat = require('../chat/chat.model');
+
 // Get list of lectures
 exports.index = function(req, res) {
   Lecture.find(function (err, lectures) {
@@ -17,6 +19,18 @@ exports.show = function(req, res) {
     if(err) { return handleError(res, err); }
     if(!lecture) { return res.send(404); }
     return res.json(lecture);
+  });
+};
+
+// Get a single lecture's chat messages
+exports.showChat = function(req, res) {
+  Lecture.findById(req.params.id, function (err, lecture) {
+    if(err) { return handleError(res, err); }
+    if(!lecture) { return res.send(404); }
+      Chat.find({lectureId: req.params.id}, function (err, chats) {
+        if(err) { return handleError(res, err); }
+        return res.json(chats);
+      });
   });
 };
 

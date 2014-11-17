@@ -3,16 +3,20 @@
 angular.module('twebProject1App')
   .controller('DisplayTeacherCtrl', function ($scope, $http, socket, $location, Auth) {
     
+    $scope.lectureId = $location.search().lecture
+    
     /*
     * Chat
     */
     
     $scope.chatMessages = [];
     
-    //get chat messages
-    $http.get('/api/chats').success(function(chatMessages) {
+    //get chat messages of lecture
+    $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
         $scope.chatMessages = chatMessages;
-        socket.syncUpdates('chat', $scope.chatMessages);
+        socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
+            $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;}); //TODO : bad practice, all the chats are retrive and filtered bug the GET /api/lectures/:id/chats works
+        });
     });
     
     /*
@@ -26,8 +30,6 @@ angular.module('twebProject1App')
       scale = 0.8,
       canvas = document.getElementById('the-canvas'),
       ctx = canvas.getContext('2d');
-    
-    $scope.lectureId = $location.search().lecture
     
     $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
 
@@ -100,7 +102,7 @@ angular.module('twebProject1App')
         $http.put('/api/lectures/' + $scope.lectureId, { currentPage: num });
             
         //send event to student
-        socket.socket.emit('changePage',{pageNum:num});
+        socket.socket.emit('changePage', {lectureId: $scope.lectureId, pageNum:num});
     }
 
     /**
