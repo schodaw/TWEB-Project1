@@ -11,7 +11,7 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.name.$error.required && submitted') A name is required
         .form-group(ng-class='{ "has-success": form.role.$valid && submitted,        "has-error": form.role.$invalid && submitted }')
           label Role
-          select.form-control(name='role', ng-model='user.role')
+          select.form-control(name='role', ng-model='user.role', required='')
             option student
             option teacher
           p.help-block(ng-show='form.role.$error.required && submitted') A role is required

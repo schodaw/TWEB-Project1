@@ -136,10 +136,20 @@ angular.module('twebProject1App')
         return currentUser.role === 'admin';
       },
         
+      /**
+       * Check if a user is a student
+       *
+       * @return {Boolean}
+       */
       isStudent: function() {
         return currentUser.role === 'student';
       },
         
+      /**
+       * Check if a user is a teacher
+       *
+       * @return {Boolean}
+       */
       isTeacher: function() {
         return currentUser.role === 'teacher';
       },

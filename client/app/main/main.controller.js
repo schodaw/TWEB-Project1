@@ -2,6 +2,18 @@
 
 angular.module('twebProject1App')
   .controller('MainCtrl', function ($scope, $http, socket) {
+    /*
+    * Managing lectureModels
+    */
+    
+    $scope.lectureModels = [];
+    
+    $http.get('/api/lectureModels').success(function(lectureModels) {
+        $scope.lectureModels = lectureModels;
+        socket.syncUpdates('lectureModel', $scope.lectureModels);
+    });
+    
+    /*
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -24,4 +36,5 @@ angular.module('twebProject1App')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
     });
+    */
 });
