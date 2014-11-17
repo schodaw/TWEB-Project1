@@ -14,9 +14,9 @@ exports.register = function(socket) {
     onRemove(socket, doc);
   });
     
-    socket.on('changePage', function(data) {
-      console.info('serveur a recu page : %s', data.pageNum);
-      socket.broadcast.emit('changePage', data);
+  socket.on('changePage', function(data) {
+    console.info('serveur a recu page : %s', data.pageNum);
+    socket.broadcast.emit('changePage', data);
   });
 }
 

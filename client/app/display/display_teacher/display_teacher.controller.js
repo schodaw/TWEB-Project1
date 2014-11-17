@@ -9,6 +9,7 @@ angular.module('twebProject1App')
     
     $scope.chatMessages = [];
     
+    //get chat messages
     $http.get('/api/chats').success(function(chatMessages) {
         $scope.chatMessages = chatMessages;
         socket.syncUpdates('chat', $scope.chatMessages);
@@ -16,29 +17,7 @@ angular.module('twebProject1App')
     
     /*
     *   PDFJS
-    *  
     */
-	
-	//
-    // If absolute URL from the remote server is provided, configure the CORS
-    // header on that server.
-    //
-    var pdfUrl = 'data/compressed.tracemonkey-pldi-09.pdf';
-
-
-    //
-    // Disable workers to avoid yet another cross-origin issue (workers need
-    // the URL of the script to be loaded, and dynamically loading a cross-origin
-    // script does not work).
-    //
-    // PDFJS.disableWorker = true;
-
-    //
-    // In cases when the pdf.worker.js is located at the different folder than the
-    // pdf.js's one, or the pdf.js is executed via eval(), the workerSrc property
-    // shall be specified.
-    //
-    // PDFJS.workerSrc = 'components/pfjs/pdf.worker.js';
 
     var pdfDoc = null,
       pageNum = 1,
@@ -47,6 +26,25 @@ angular.module('twebProject1App')
       scale = 0.8,
       canvas = document.getElementById('the-canvas'),
       ctx = canvas.getContext('2d');
+    
+    $scope.lectureId = $location.search().lecture
+    
+    $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
+
+        pageNum = lecture.currentPage;
+        
+        /**
+        * Asynchronously downloads PDF.
+        */
+        PDFJS.getDocument(lecture.pdfPath).then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page_count').textContent = pdfDoc.numPages;
+            
+            // Initial/first page rendering
+            renderPage(pageNum);
+        });
+    });
+	
 
     /**
     * Get page info from document, resize canvas accordingly, and render page.
@@ -79,7 +77,7 @@ angular.module('twebProject1App')
         });
 
         // Update page counters
-        document.getElementById('page_num').textContent = pageNum;
+        document.getElementById('page_num').textContent = num;
     }
 
     /**
@@ -87,11 +85,22 @@ angular.module('twebProject1App')
     * finised. Otherwise, executes rendering immediately.
     */
     function queueRenderPage(num) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num);
+        if (pageRendering) {
+          pageNumPending = num;
+        } else {
+          renderPage(num);
+        }
     }
+    
+    function changePage(num) {
+        //display pdf page
+        queueRenderPage(num);
+        
+        //edit database with new page number
+        $http.put('/api/lectures/' + $scope.lectureId, { currentPage: num });
+            
+        //send event to student
+        socket.socket.emit('changePage',{pageNum:num});
     }
 
     /**
@@ -101,35 +110,17 @@ angular.module('twebProject1App')
         if (pageNum <= 1) {
           return;
         }
-        pageNum--;
-        queueRenderPage(pageNum);
-        
-        //send event to student
-        socket.socket.emit('changePage',{pageNum:pageNum});
+        changePage(pageNum--);
     }
 
     /**
     * Displays next page.
     */
     $scope.onNextPage = function() {
+        //change page number
         if (pageNum >= pdfDoc.numPages) {
           return;
         }
-        pageNum++;
-        queueRenderPage(pageNum);
-        
-        //send event to student
-        socket.socket.emit('changePage',{pageNum:pageNum});
+        changePage(pageNum++);
     }
-
-    /**
-    * Asynchronously downloads PDF.
-    */
-    PDFJS.getDocument(pdfUrl).then(function (pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page_count').textContent = pdfDoc.numPages;
-
-        // Initial/first page rendering
-        renderPage(pageNum);
-    });
   });

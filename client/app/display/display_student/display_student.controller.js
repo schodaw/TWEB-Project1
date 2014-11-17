@@ -14,6 +14,7 @@ angular.module('twebProject1App')
         socket.syncUpdates('chat', $scope.chatMessages);
     });
 
+    //add a message to the chat
     $scope.addMessage = function() {
       if($scope.newMessage === '') {
         return;
@@ -23,17 +24,10 @@ angular.module('twebProject1App')
       $scope.newMessage = '';
     };
     
-    
+        
     /*
     *   PDFJS
-    *  
     */
-	
-	//
-    // If absolute URL from the remote server is provided, configure the CORS
-    // header on that server.
-    //
-    var pdfUrl = 'data/compressed.tracemonkey-pldi-09.pdf';
 
     var pdfDoc = null,
       pageNum = 1,
@@ -41,7 +35,25 @@ angular.module('twebProject1App')
       pageNumPending = null,
       scale = 0.8,
       canvas = document.getElementById('the-canvas'),
-      ctx = canvas.getContext('2d');
+      ctx = canvas.getContext('2d');    
+    
+    $http.get('/api/lectures/' + $location.search().lecture).success(function(lecture) {
+
+        pageNum = lecture.currentPage;
+        
+        /**
+        * Asynchronously downloads PDF.
+        */
+        PDFJS.getDocument(lecture.pdfPath).then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page_count').textContent = pdfDoc.numPages;
+            
+            // Initial/first page rendering
+            renderPage(pageNum);
+        });
+    });
+	
+	
 
     /**
     * Get page info from document, resize canvas accordingly, and render page.
@@ -74,7 +86,7 @@ angular.module('twebProject1App')
         });
 
         // Update page counters
-        document.getElementById('page_num').textContent = pageNum;
+        document.getElementById('page_num').textContent = num;
     }
 
     /**
@@ -87,24 +99,13 @@ angular.module('twebProject1App')
         } else {
           renderPage(num);
         }
-    }
-
-    /**
-    * Asynchronously downloads PDF.
-    */
-    PDFJS.getDocument(pdfUrl).then(function (pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page_count').textContent = pdfDoc.numPages;
-
-        // Initial/first page rendering
-        renderPage(pageNum);
-    });
-    
+    }    
     
     /*
     * receive event from teacher
     */
     socket.socket.on('changePage', function(data) {
+        pageNum = data.pageNum;
         renderPage(data.pageNum);
     });
   });

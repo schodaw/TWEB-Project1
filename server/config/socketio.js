@@ -16,12 +16,6 @@ function onConnect(socket) {
   socket.on('info', function (data) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
   });
-  
-    /*
-  socket.on('changePage', function(data) {
-      console.info('serveur a recu page : %s', data.pageNum);
-      socket.broadcast.emit('changePage', data);
-  });*/
 
   // Insert sockets below
   require('../api/lectureModel/lectureModel.socket').register(socket);
