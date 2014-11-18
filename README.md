@@ -11,7 +11,7 @@ Authors : Jollien Dominique and Ngo Dung
 
 Run project locally
 ----
-- In order to run the project locally, we need to run `mongodb` in administrator mode.
+- In order to run the project locally, we need to run `mongodb` in administrator mode (use mongod executable).
 - Make sure you have installed grunt and bower globaly with `npm install grunt-cli -g` and `npm install bower -g`
 - clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
 - go at the root : `cd TWEB-Project1`
