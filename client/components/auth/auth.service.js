@@ -26,9 +26,10 @@ angular.module('twebProject1App')
         }).
         success(function(data) {
           $cookieStore.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data);
-          return cb();
+          currentUser = User.get(function() {
+            deferred.resolve(data);
+            return cb();
+          });
         }).
         error(function(err) {
           this.logout();
