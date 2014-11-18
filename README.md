@@ -13,7 +13,7 @@ Run project locally
 ----
 - In order to run the project locally, we need to run `mongodb` in administrator mode.
 - Make sure you have installed grunt and bower globaly with `npm install grunt-cli -g` and `npm install bower -g`
-- clone repo : `git clone git://github.com/mozilla/pdf.js.git pdfjs`
+- clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
 - go at the root : `cd TWEB-Project1`
 - install node modules : `bower install` and `npm install`
 - build the project : `grunt build`
