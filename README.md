@@ -15,7 +15,7 @@ Run project locally
 - Make sure you have installed grunt and bower globaly with `npm install grunt-cli -g` and `npm install bower -g`
 - clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
 - go at the root : `cd TWEB-Project1`
-- install node modules : `bower install` and `npm install`
+- install npm and bower modules : `bower install` and `npm install`
 - build the project : `grunt build`
 - run the project locally : `grunt serve`
 - The project is now accessible at http://localhost:9000
