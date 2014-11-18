@@ -15,6 +15,7 @@ div(ng-include='"components/navbar/navbar.html"')
     .col-md-4.col-centered
       .row
         .col-centered
+          h1 Lecture id : {{lectureId}}
           h1 Chat
           .row(ng-repeat='chat in chatMessages')
             .col-md-3.col-centered ({{chat.time}})
