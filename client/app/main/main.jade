@@ -14,8 +14,7 @@ header#banner.hero-unit
           input.form-control(type='text', placeholder='Type the lecture code', ng-model='lecture.id')
           span.input-group-btn
             button.btn.btn-primary(type='submit', ng-click='joinLecture()') Join
-  // Ne fonctionne pas :  div(ng-if='Auth.isTeacher()')
-  div
+  div(ng-if='isTeacher')
     .row
       .col-lg-12
         h1 List of slide decks
