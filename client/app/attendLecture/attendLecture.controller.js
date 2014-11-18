@@ -54,6 +54,8 @@ angular.module('twebProject1App')
     if(Auth.isStudent() || Auth.isTeacher()) {
         
         $scope.lectureId = $location.search().lecture
+        
+        $scope.syncEnabled = true;
     
         /*
         * Chat
@@ -112,11 +114,41 @@ angular.module('twebProject1App')
         * receive event from teacher
         */
         socket.socket.on('changePage', function(data) {
-            if(data.lectureId === $scope.lectureId) {
+            if($scope.syncEnabled && data.lectureId === $scope.lectureId) {
                 pageNum = data.pageNum;
                 queueRenderPage(data.pageNum);
             }
         });
+        
+        /*
+        * start or stop pdf slide change syncronisation
+        */
+        $scope.toggleSync = function() {
+            $scope.syncEnabled = !$scope.syncEnabled;
+        };
+        
+        /**
+        * Displays previous page if synchronisation is disabled.
+        */
+        $scope.onPrevPage = function() {
+            if (pageNum <= 1 || $scope.syncEnabled) {
+              return;
+            }
+            //display pdf page
+            queueRenderPage(--pageNum);
+        }
+
+        /**
+        * Displays next page if synchronisation is disabled.
+        */
+        $scope.onNextPage = function() {
+            //change page number
+            if (pageNum >= pdfDoc.numPages || $scope.syncEnabled) {
+              return;
+            }
+            //display pdf page
+            queueRenderPage(++pageNum);
+        }
         
     } else {
         $window.location = '/';

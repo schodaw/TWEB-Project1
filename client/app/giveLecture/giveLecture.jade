@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container.center-block
   .row
     .col-md-8.col-centered
-      h1 'Previous/Next' example
+      h1 TODO : CHANGE !!!!
       div
         button#prev(ng-click='onPrevPage()') Previous
         button#next(ng-click='onNextPage()') Next
@@ -16,6 +16,8 @@ div(ng-include='"components/navbar/navbar.html"')
       .row
         .col-centered
           h1 Lecture id : {{lectureId}}
+      .row
+        .col-centered
           h1 Chat
           .row(ng-repeat='chat in chatMessages')
             .col-md-3.col-centered ({{chat.time}})

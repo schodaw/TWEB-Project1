@@ -1,6 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
         "C:/Data/TWEB/TWEB-Project1/dist/public/bower_components/pdfjs-bower/dist/pdf.js",
-        "C:/Data/TWEB/TWEB-Project1/client/app/main/main.js"
+        "C:/Data/TWEB/TWEB-Project1/client/app/main/main.js",
+        "C:/Data/TWEB/TWEB-Project1/client/app/attendLecture/attendLecture.controller.js"
     ]
 }
