@@ -118,7 +118,7 @@ angular.module('twebProject1App')
             if (pageNum <= 1) {
               return;
             }
-            changePage(pageNum--);
+            changePage(--pageNum);
         }
 
         /**
@@ -129,7 +129,7 @@ angular.module('twebProject1App')
             if (pageNum >= pdfDoc.numPages) {
               return;
             }
-            changePage(pageNum++);
+            changePage(++pageNum);
         }
     } else {
         $window.location = '/';

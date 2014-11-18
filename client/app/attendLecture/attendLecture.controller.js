@@ -114,7 +114,7 @@ angular.module('twebProject1App')
         socket.socket.on('changePage', function(data) {
             if(data.lectureId === $scope.lectureId) {
                 pageNum = data.pageNum;
-                renderPage(data.pageNum);
+                queueRenderPage(data.pageNum);
             }
         });
         

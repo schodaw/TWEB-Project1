@@ -3,7 +3,6 @@
 angular.module('twebProject1App')
   .controller('MainCtrl', function ($scope, $http, socket, $window, Auth) {
     
-    
     if(Auth.isTeacher()) {
         /*
         * Managing lectureModels
