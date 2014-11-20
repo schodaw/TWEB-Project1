@@ -22,9 +22,8 @@ header#banner.hero-unit
               p.input-group
                 input.form-control(type='text', name="title", placeholder='Write a title', ng-model='newLectureModel.title')
                 input.form-control(type='text', name="author", placeholder='Write an author', ng-model='newLectureModel.author')
-                input.form-control(type='text', name='pdfPath', placeholder='Select a pdf file', ng-model='newLectureModel.pdfPath')
-                //
-                  input.form-control(type='file', name='pdfPath', placeholder='Select a pdf file', ng-model='newLectureModel.pdfPath', accept='application/pdf')
+                // input.form-control(type='text', name='pdfPath', placeholder='Select a pdf file', ng-model='newLectureModel.pdfPath')
+                input.form-control(type='file', name='pdfPath', placeholder='Select a pdf file', ng-model='newLectureModel.pdfPath', accept='application/pdf')
             div
                   button.btn.btn-primary(type='submit', ng-click='addLectureModel()') Add
           hr
@@ -33,10 +32,11 @@ header#banner.hero-unit
         h1 List of slide decks
     .row
       .col-lg-12
-        .col-md-3.col-centered Title
-        .col-md-3.col-centered Author
-        .col-md-3.col-centered PDF
-        .col-md-3.col-centered Action
+        .row(style="background-color: #d9edf7;")
+          .col-md-3.col-centered Title
+          .col-md-3.col-centered Author
+          .col-md-3.col-centered PDF
+          .col-md-3.col-centered Action
         .row(ng-repeat='lectureModel in lectureModels')
           .col-md-3.col-centered {{lectureModel.title}}
           .col-md-3.col-centered {{lectureModel.author}}

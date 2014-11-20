@@ -2,7 +2,6 @@ div(ng-include='"components/navbar/navbar.html"')
 .container.center-block
   .row
     .col-md-8.col-centered(style='width:70%')
-      h1 !!!!!!!!!! AFFICHER LECTURE ID !!!!!!!!!!
       div
         button#prev(ng-click='onPrevPage()') Previous
         button#next(ng-click='onNextPage()') Next
@@ -15,8 +14,9 @@ div(ng-include='"components/navbar/navbar.html"')
     .col-md-4.col-centered(style='width:30%')
       .row
         .col-centered
-          input(type='checkbox', ng-click='toggleSync()', ng-model='syncEnabled' checked='syncEnabled')
-          | Sync slides
+          form  
+            input(type='checkbox', ng-click='toggleSync()', ng-model='syncEnabled' checked='syncEnabled')
+            | Sync slides
       .row.no-glutter
         .col-centered
           h1 Chat

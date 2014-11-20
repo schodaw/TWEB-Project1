@@ -9,6 +9,9 @@ angular.module('twebProject1App')
         /*
         * Managing lectureModels
         */
+        $scope.addLectureModel = function() {
+            
+        }
 
         $scope.lectureModels = [];
 
