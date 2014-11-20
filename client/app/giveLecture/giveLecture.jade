@@ -1,8 +1,8 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container.center-block
   .row
-    .col-md-8.col-centered
-      h1 TODO : CHANGE !!!!
+    .col-md-8.col-centered(style='width:70%')
+      h1 !!!!!!!!!! AFFICHER LECTURE ID !!!!!!!!!!
       div
         button#prev(ng-click='onPrevPage()') Previous
         button#next(ng-click='onNextPage()') Next
@@ -11,18 +11,17 @@ div(ng-include='"components/navbar/navbar.html"')
           span#page_num
           | /
           span#page_count
-      canvas#the-canvas(style='border:1px solid black')
-    .col-md-4.col-centered
-      .row
-        .col-centered
-          h1 Lecture id : {{lectureId}}
-      .row
+        canvas#the-canvas(style='border:1px solid black; height:100%; width:100%; display:block')
+    .col-md-4.col-centered(style='width:30%')
+      .row.no-gutter
         .col-centered
           h1 Chat
-          .row(ng-repeat='chat in chatMessages')
-            .col-md-3.col-centered ({{chat.time}})
-            .col-md-2.col-centered {{chat.author}}:
-            .col-md-6.col-centered {{chat.content}}
+          div#msgWrapper(style='height:400px; width:100%; overflow-y: scroll; overflow-x: hidden;')
+              .row.no-glutter(ng-repeat='chat in chatMessages')
+                hr
+                .col-md-1.col-centered(style='width:25%') ({{chat.time}})
+                .col-md-1.col-centered(style='width:25%') {{chat.author}}
+                .col-md-1.col-centered(style='width:50%') {{chat.content}} 
           #chatContent
       .row
         .col-centered

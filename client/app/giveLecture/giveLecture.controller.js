@@ -91,7 +91,7 @@ angular.module('twebProject1App')
           pageNum = 1,
           pageRendering = false,
           pageNumPending = null,
-          scale = 0.8,
+          scale = 1,
           canvas = document.getElementById('the-canvas'),
           ctx = canvas.getContext('2d');
 
