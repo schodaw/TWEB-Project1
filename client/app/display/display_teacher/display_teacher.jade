@@ -1,25 +1,26 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container.center-block
-  .row
-    .col-md-8.col-centered
-      h1 'Previous/Next' example
+  .row.no-gutter
+    .col-md-8.col-centered(style='width:70%')
+      h1 Teacher view
       div
-        button#prev(ng-click='onPrevPage()') Previous
-        button#next(ng-click='onNextPage()') Next
+        button#prev(ng-click='onPrevPage()') Previous 
+        button#next(ng-click='onNextPage()') Next 
         span
-          | Page:
+          |  Page:
           span#page_num
-          | /
+          |  / 
           span#page_count
-      canvas#the-canvas(style='border:1px solid black')
-    .col-md-4.col-centered
-      .row
+        canvas#the-canvas(style='border:1px solid black; height:100%; width:100%; display:block')
+    .col-md-4.col-centered(style='width:30%')
+      .row.no-gutter
         .col-centered
           h1 Chat
-          .row(ng-repeat='chat in chatMessages')
-            .col-md-3.col-centered ({{chat.time}})
-            .col-md-2.col-centered {{chat.author}}:
-            .col-md-6.col-centered {{chat.content}}
+          .row.no-gutter(ng-repeat='chat in chatMessages')
+            hr
+            .col-md-1.col-centered(style='width:25%') ({{chat.time}}) 
+            .col-md-1.col-centered(style='width:25%')  {{chat.author}} 
+            .col-md-1.col-centered(style='width:50%') {{chat.content}}
           #chatContent
       .row
         .col-centered
