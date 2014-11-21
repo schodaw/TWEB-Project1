@@ -66,7 +66,7 @@ angular.module('twebProject1App')
     
     if(Auth.isTeacher()) {
     
-        //the lecture that we are giving
+        //the lecture that we are giving is passed as a query string
         $scope.lectureId = $location.search().lecture
 
         /*
@@ -79,14 +79,13 @@ angular.module('twebProject1App')
         $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
             $scope.chatMessages = chatMessages;
             socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
-                $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;}); //TODO : bad practice, all the chats are retrive and filtered bug the GET /api/lectures/:id/chats works
+                $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
             });
         });
 
         /*
         *   PDFJS
         */
-
         var pdfDoc = null,
           pageNum = 1,
           pageRendering = false,
@@ -95,6 +94,7 @@ angular.module('twebProject1App')
           canvas = document.getElementById('the-canvas'),
           ctx = canvas.getContext('2d');
 
+        //get lecture info
         $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
 
             pageNum = lecture.currentPage;

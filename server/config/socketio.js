@@ -21,7 +21,6 @@ function onConnect(socket) {
   require('../api/lectureModel/lectureModel.socket').register(socket);
   require('../api/lecture/lecture.socket').register(socket);
   require('../api/chat/chat.socket').register(socket);
-  require('../api/thing/thing.socket').register(socket);
 }
 
 module.exports = function (socketio) {

@@ -1,17 +1,31 @@
 'use strict';
 
 angular.module('twebProject1App')
-  .controller('MainCtrl', function ($scope, $http, socket, $window, Auth) {
+  .controller('MainCtrl', function ($scope, $http, socket, $window, Auth, $upload) {
     
     $scope.isTeacher = Auth.isTeacher();
     
     if(Auth.isTeacher()) {
         /*
-        * Managing lectureModels
+        * Create a lectureModel
         */
-        $scope.addLectureModel = function() {
-            
-        }
+        //we are using the module angular-file-upload : https://github.com/danialfarid/angular-file-upload#node
+        $scope.onFileSelect = function($files) {
+            //$files: an array of files selected, each file has name, size, and type.
+            for (var i = 0; i < $files.length; i++) {
+              var file = $files[i];
+              $scope.upload = $upload.upload({
+                url: '/upload',
+                data: {title: $scope.newLectureModelTitle, author: $scope.newLectureModelAuthor},
+                file: file,
+              }).progress(function(evt) {
+                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+              }).success(function(data, status, headers, config) {
+                // file is uploaded successfully
+                console.log(data);
+              });
+            }
+          };
 
         $scope.lectureModels = [];
 
@@ -33,7 +47,7 @@ angular.module('twebProject1App')
                                 .success(function(lecture) {
                                     $window.location = '/giveLecture?lecture=' + lecture._id;
                                 });
-        }
+        };
     }
     
     /**
@@ -41,6 +55,6 @@ angular.module('twebProject1App')
     */
     $scope.joinLecture = function() {
         $window.location = '/attendLecture?lecture=' + $scope.lecture.id;
-    }
+    };
     
 });

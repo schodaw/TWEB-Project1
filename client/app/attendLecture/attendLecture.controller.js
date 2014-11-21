@@ -85,7 +85,6 @@ angular.module('twebProject1App')
         /*
         *   PDFJS
         */
-
         var pdfDoc = null,
           pageNum = 1,
           pageRendering = false,
@@ -94,6 +93,7 @@ angular.module('twebProject1App')
           canvas = document.getElementById('the-canvas'),
           ctx = canvas.getContext('2d');
 
+        //get lecture info
         $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
 
             pageNum = lecture.currentPage;
