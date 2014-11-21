@@ -64,7 +64,8 @@ angular.module('twebProject1App')
         socket.socket.emit('changePage', {lectureId: $scope.lectureId, pageNum:num});
     }
     
-    if(Auth.isTeacher()) {
+    // roles are not working most of the time
+    // if(Auth.isTeacher()) {
     
         //the lecture that we are giving is passed as a query string
         $scope.lectureId = $location.search().lecture
@@ -131,7 +132,10 @@ angular.module('twebProject1App')
             }
             changePage(++pageNum);
         }
+// roles are not working most of the time
+/*
     } else {
         $window.location = '/';
     }
+*/
   });

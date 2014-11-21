@@ -5,7 +5,8 @@ angular.module('twebProject1App')
     
     $scope.isTeacher = Auth.isTeacher();
     
-    if(Auth.isTeacher()) {
+    // roles are not working most of the time
+    // if(Auth.isTeacher()) {
         /*
         * Create a lectureModel
         */
@@ -48,7 +49,7 @@ angular.module('twebProject1App')
                                     $window.location = '/giveLecture?lecture=' + lecture._id;
                                 });
         };
-    }
+    //}
     
     /**
     * Join a lecture (student)

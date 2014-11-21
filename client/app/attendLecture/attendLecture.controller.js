@@ -50,8 +50,8 @@ angular.module('twebProject1App')
         }
     }
     
-    
-    if(Auth.isStudent() || Auth.isTeacher()) {
+    // roles are not working most of the time
+    //if(Auth.isStudent() || Auth.isTeacher()) {
         
         $scope.lectureId = $location.search().lecture
         
@@ -150,7 +150,10 @@ angular.module('twebProject1App')
             queueRenderPage(++pageNum);
         }
         
+    // roles are not working most of the time
+    /*
     } else {
         $window.location = '/';
     }
+    */
   });

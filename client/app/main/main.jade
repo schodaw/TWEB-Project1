@@ -13,7 +13,9 @@ header#banner.hero-unit
           input.form-control(type='text', placeholder='Type the lecture code', ng-model='lecture.id')
           span.input-group-btn
             button.btn.btn-primary(type='submit', ng-click='joinLecture()') Join
-  div(ng-if='isTeacher')
+  // roles are not working most of the time
+  // div(ng-if='isTeacher')
+  div
     .row
       .col-lg-12
         h1 Add a slide deck  
