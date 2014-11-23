@@ -18,8 +18,9 @@ angular.module('twebProject1App')
               $scope.upload = $upload.upload({
                 url: '/upload',
                 data: {title: $scope.newLectureModelTitle, author: $scope.newLectureModelAuthor},
-                file: file,
+                file: file
               }).progress(function(evt) {
+                document.getElementById('uploadProgress').textContent = 'upload progress : ' + parseInt(100.0 * evt.loaded / evt.total) + '%';
                 console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
               }).success(function(data, status, headers, config) {
                 // file is uploaded successfully
