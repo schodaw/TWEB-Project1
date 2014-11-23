@@ -5,6 +5,8 @@ First project of the TWEB course.
 
 https://tweb-project1-jollien-ngo.herokuapp.com/
 
+Attention ! The project is not working on heroku.
+
 Authors : Jollien Dominique and Ngo Dung
 
 ---
