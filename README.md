@@ -30,6 +30,7 @@ X = not working
 | Send chat messages                                                | O     | O      |
 | Stop slide synchronisation to be able to browse the lecture's pdf | O     | O      |
 | Answer poll                                                       | X     | X      |
+| Send mood info                                                    | X     | X      |
 
 | Teacher                                                           | Local | Heroku |
 |-------------------------------------------------------------------|-------|--------|
