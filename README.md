@@ -3,6 +3,9 @@ TWEB-Project1
 
 First project of the TWEB course.
 
+This project consists of a teaching platform that allows students to follow lectures and give feedback to the teacher giving the lecture.
+
+It is available online at the adress :
 https://tweb-project1-jollien-ngo.herokuapp.com/
 
 Authors : Jollien Dominique and Ngo Dung
@@ -11,24 +14,41 @@ Authors : Jollien Dominique and Ngo Dung
 
 # Functionalities #
 
+O = working
+X = not working
 
-## For all users ##
-- Signing up
-- Logging in
+| Teacher and student         | Local | Heroku |
+|-----------------------------|-------|--------|
+| Signing in                  | O     | O      |
+| Logging in                  | O     | O      |
+| See list of past lectures   | O     | O      |
+| Access a lecture transcript | O     | O      |
 
-## As a student ##
-- Join a lecture
-- Send chat messages
-- Stop slide synchronisation to be able to browse the lecture's pdf
+| Student                                                           | Local | Heroku |
+|-------------------------------------------------------------------|-------|--------|
+| Join a lecture                                                    | O     | O      |
+| Send chat messages                                                | O     | O      |
+| Stop slide synchronisation to be able to browse the lecture's pdf | O     | O      |
+| Answer poll                                                       | X     | X      |
 
-## As a teacher ##
-- Creation of a new lecture model : uploading of a slide deck
-- Creation of a lecture using a lecture model via `start lecture`
-- Change slide for all the class to see
+| Teacher                                                           | Local | Heroku |
+|-------------------------------------------------------------------|-------|--------|
+| Creation of a new lecture model : uploading of a slide deck       | O     | O      |
+| Creation of a lecture using a lecture model via `start lecture`   | O     | O      |
+| Stop slide synchronisation to be able to browse the lecture's pdf | O     | O      |
+| Change slide for all the class to see                             | O     | O      |
+| See chat messages                                                 | O     | O      |
+| Submit poll                                                       | X     | X      |
 
-In fact, users roles are not taken in account for functionality access, so a student can create a lecture for example.
+| Administrator           | Local | Heroku |
+|-------------------------|-------|--------|
+| Monitor system          | O     | O      |
+| Consult admin dashboard | O     | O      |
 
 
+#Pending work#
+- Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
+- Change pdf upload functionnality to upload on amazone s3.
 
 #Run project locally#
 
