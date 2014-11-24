@@ -12,7 +12,7 @@ angular.module('twebProject1App')
     
     // roles are not working most of the time
     //if(Auth.isTeacher()) {
-        /*
+       /*
         * Create a lectureModel
         */
         //we are using the module angular-file-upload : https://github.com/danialfarid/angular-file-upload#node
