@@ -22,11 +22,11 @@ Authors : Jollien Dominique and Ngo Dung
 - Stop slide synchronisation to be able to browse the lecture's pdf
 
 ## As a teacher ##
-- Creation of a new lecture models : uploading of a slide deck
+- Creation of a new lecture model : uploading of a slide deck
 - Creation of a lecture using a lecture model via `start lecture`
-- Change slide for the all class to see
+- Change slide for all the class to see
 
-In fact, users roles are not taken in account for functionality access, so a student can create a lecture.
+In fact, users roles are not taken in account for functionality access, so a student can create a lecture for example.
 
 
 
