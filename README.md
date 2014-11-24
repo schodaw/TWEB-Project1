@@ -9,8 +9,29 @@ Authors : Jollien Dominique and Ngo Dung
 
 ---
 
-Run project locally
-----
+# Functionalities #
+
+
+## For all users ##
+- Signing up
+- Logging in
+
+## As a student ##
+- Join a lecture
+- Send chat messages
+- Stop slide synchronisation to be able to browse the lecture's pdf
+
+## As a teacher ##
+- Creation of a new lecture models : uploading of a slide deck
+- Creation of a lecture using a lecture model via `start lecture`
+- Change slide for the all class to see
+
+In fact, users roles are not taken in account for functionality access, so a student can create a lecture.
+
+
+
+#Run project locally#
+
 - In order to run the project locally, we need to run `mongodb` in administrator mode (use mongod executable).
 - Make sure you have installed grunt and bower globaly with `npm install grunt-cli -g` and `npm install bower -g`
 - clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
