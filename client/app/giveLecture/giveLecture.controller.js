@@ -1,3 +1,9 @@
+/*
+* The giveLecture page is used to give a lecture started by a teacher.
+* Only teachers can use this page, they can change the lecture's curent slide for the all class to see.
+* They can also receive live feedback from students.
+* The given lecture id is given in the query string parameter "lecture".
+*/
 'use strict';
 
 angular.module('twebProject1App')
@@ -79,6 +85,7 @@ angular.module('twebProject1App')
         //get chat messages of lecture
         $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
             $scope.chatMessages = chatMessages;
+            //live syncronization of chat messages 
             socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
                 $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
             });

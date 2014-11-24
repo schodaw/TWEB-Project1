@@ -1,3 +1,8 @@
+/*
+* Home page.
+* On this page the teacher can : create a new lectureModel (slide deck) by uploading a pdf file. And start to give a lecture.
+* On this page the student can : start attending a lecture by giving it's id.
+*/
 'use strict';
 
 angular.module('twebProject1App')

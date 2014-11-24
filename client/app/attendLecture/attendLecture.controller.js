@@ -1,3 +1,8 @@
+/*
+* The attendLecture page is used to attend to a lecture started by a teacher.
+* Both students and teachers can use this page, they can send chat messages and see the lecture's slides.
+* The attended lecture id is given in the query string parameter "lecture".
+*/
 'use strict';
 
 angular.module('twebProject1App')
@@ -53,19 +58,21 @@ angular.module('twebProject1App')
     // roles are not working most of the time
     //if(Auth.isStudent() || Auth.isTeacher()) {
         
+        //the lecture that we are attending is passed as a query string
         $scope.lectureId = $location.search().lecture
         
+        //true if the slides are synchronized with the changes made by the teacher
         $scope.syncEnabled = true;
     
         /*
         * Chat
         */
-
         $scope.chatMessages = [];
 
         //get chat messages of lecture
         $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
             $scope.chatMessages = chatMessages;
+            //live syncronization of chat messages 
             socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
                 $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
             });
