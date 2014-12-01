@@ -7,6 +7,7 @@
 
 var User = require('../api/user/user.model');
 
+// Three users by default : two students and one teacher
 User.find({}).remove(function() {
   User.create({
     provider: 'local',

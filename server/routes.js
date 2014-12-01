@@ -11,7 +11,7 @@ var multipart = require('connect-multiparty');
 var fs = require('fs');
 
 //configuration of connect-multiparty
-var pdfUploadDir = './client/data';
+var pdfUploadDir = './public/data';
 var options = new Object();
 options.uploadDir = pdfUploadDir;
 options.autoFiles = true;
