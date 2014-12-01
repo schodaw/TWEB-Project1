@@ -21,8 +21,8 @@ X = not working
 |-----------------------------|-------|--------|
 | Signing in                  | O     | O      |
 | Logging in                  | O     | O      |
-| See list of past lectures   | O     | O      |
-| Access a lecture transcript | O     | O      |
+| See list of past lectures   | X     | X      |
+| Access a lecture transcript | X     | X      |
 
 | Student                                                           | Local | Heroku |
 |-------------------------------------------------------------------|-------|--------|
@@ -43,8 +43,8 @@ X = not working
 
 | Administrator           | Local | Heroku |
 |-------------------------|-------|--------|
-| Monitor system          | O     | O      |
-| Consult admin dashboard | O     | O      |
+| Monitor system          | X     | X      |
+| Consult admin dashboard | X     | X      |
 
 
 #Pending work#
