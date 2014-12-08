@@ -17,7 +17,8 @@
     "angular-ui-router": "~0.2.10",
     "pdfjs-dist": "~1.0.931",
     "ng-file-upload": "~1.6.12",
-    "ng-file-upload-shim": "~1.6.12"
+    "ng-file-upload-shim": "~1.6.12",
+    "aws-sdk-js": "~2.0.30"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",

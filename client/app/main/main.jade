@@ -21,13 +21,13 @@ header#banner.hero-unit
         h1 Add a slide deck  
         p Enter lecture infos then select slide deck as pdf file to add the slide deck
       .col-sm-6
-        form(ng-controller="MainCtrl")
+            for(ng-controller="MainCtrl")
               p.input-group
-                input.form-control(type='text', placeholder='Write a title', ng-model='newLectureModelTitle')
-                input.form-control(type='text', placeholder='Write an author', ng-model='newLectureModelAuthor')
-                input(type='file', ng-file-select='onFileSelect($files)', name='pdf_file' accept='application/pdf')
-                span#uploadProgress
-            div
+                // input.form-control(type='text', placeholder='Write a title', ng-model='newLectureModelTitle')
+                // input.form-control(type='text', placeholder='Write an author', ng-model='newLectureModelAuthor')
+                input(type='file', name='file' accept='application/pdf' ng-file-select='onFileSelect($files)', file='')
+                button.btn.btn-primary(type='submit', ng-click='createLectureModel()') Upload a PDF slide deck
+            span#uploadProgress
     .row
       .col-lg-12
         h1 List of slide decks
