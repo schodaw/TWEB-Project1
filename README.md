@@ -5,6 +5,9 @@ First project of the TWEB course.
 
 This project consists of a teaching platform that allows students to follow lectures and give feedback to the teacher giving the lecture.
 
+Presentation page :
+http://quangdung.github.io/tweb-project2/
+
 It is available online at the adress :
 https://tweb-project1-jollien-ngo.herokuapp.com/
 
