@@ -1,28 +1,28 @@
-div(ng-include='"components/navbar/navbar.html"')
-.container-fluid
+div
+.container-fluid  
   .row
-    .col-md-1.col-centered(style='width:69%')
-      h3(style='margin-top: 0px; margin-bottom: 10px') Lecture : {{lectureId}}
-    .col-md-8.col-centered(style='width:30%')
-      div
-        button.btn.btn-primary#prev(ng-click='onPrevPage()') Previous
-        button.btn.btn-primary#next(ng-click='onNextPage()') Next
-        span
-          |  Page: 
-          span#page_num
-          |  / 
-          span#page_count
-          |   - 
-        form(style="display:inline")
-          input(type='checkbox', ng-click='toggleSync()' checked)
-          |  Sync slides 
-  .row
-    .col-md-1.col-centered(style='width:70%; padding-left: 0px;padding-right: 5px; ')
-      canvas#the-canvas(style='border:1px solid black; height:100%; width:100%; display:block')
-    .col-md-1.col-centered(style='width:30%')
+    .col-md-1.col-centered.fill.left
+      canvas#the-canvas
+    .col-md-1.col-centered.right
       .row
-        h3(style='margin-top: 0px;') Chat
-        div#msgWrapper(style='height:300px; width:100%; overflow-y: scroll; overflow-x: hidden;')
+          h3 Lecture : {{lectureId}}
+      .row
+          div
+            button.btn.btn-primary#prev(ng-click='onPrevPage()') Previous
+            button.btn.btn-primary#next(ng-click='onNextPage()') Next
+            span
+              |  Page: 
+              span#page_num
+              |  / 
+              span#page_count
+              |   - 
+            form(style="display:inline")
+              input(type='checkbox', ng-click='toggleSync()' checked)
+              |  Sync slides 
+      hr
+      .row
+        h3 Chat
+        div#msgWrapperStudent
           .row.no-glutter(ng-repeat='chat in chatMessages')
             hr
             .col-md-1.col-centered(style='width:25%') {{chat.time}}
