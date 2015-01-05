@@ -103,6 +103,8 @@ angular.module('twebProject1App')
         //get lecture info
         $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
 
+            $scope.lectureUserFriendlyId = lecture.userFriendlyId;
+            
             pageNum = lecture.currentPage;
 
             /**

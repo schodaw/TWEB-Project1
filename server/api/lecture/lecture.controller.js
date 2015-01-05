@@ -5,6 +5,8 @@ var Lecture = require('./lecture.model');
 
 var Chat = require('../chat/chat.model');
 
+var UserFriendlyIdCounter = require('./UserFriendlyIdCounter.controller');
+
 // Get list of lectures
 exports.index = function(req, res) {
   Lecture.find(function (err, lectures) {
@@ -22,6 +24,15 @@ exports.show = function(req, res) {
   });
 };
 
+// Get a single lecture with it's user friendly id
+exports.getByUserfriendlyId = function(req, res) {
+  Lecture.find({ userFriendlyId: req.params.id }, function (err, lecture) {
+    if(err) { return handleError(res, err); }
+    if(!lecture) { return res.send(404); }
+    return res.json(lecture[0]);
+  });
+};
+
 // Get a single lecture's chat messages
 exports.showChat = function(req, res) {
   Lecture.findById(req.params.id, function (err, lecture) {
@@ -36,9 +47,12 @@ exports.showChat = function(req, res) {
 
 // Creates a new lecture in the DB.
 exports.create = function(req, res) {
-  Lecture.create(req.body, function(err, lecture) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, lecture);
+  UserFriendlyIdCounter.increment(req, res, function (result) {
+      req.body.userFriendlyId = result;
+      Lecture.create(req.body, function(err, lecture) {
+        if(err) { return handleError(res, err); }
+        return res.json(201, lecture);
+      });
   });
 };
 

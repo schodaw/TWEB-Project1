@@ -90,7 +90,9 @@ angular.module('twebProject1App')
     * Join a lecture (student)
     */
     $scope.joinLecture = function() {
-        $window.location = '/attendLecture?lecture=' + $scope.lecture.id;
+        $http.get('/api/lectures/byUserFriendlyId/' + $scope.lecture.userFriendlyId).success(function(lecture) {
+            $window.location = '/attendLecture?lecture=' + lecture._id;
+        });
     };
     
 });

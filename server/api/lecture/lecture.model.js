@@ -1,5 +1,5 @@
 /*
- * Model of a current lecture en live
+ * Model of a current lecture given by a teacher
  *
  * Components of a lecture :
  * - title : title of the lecture
@@ -17,7 +17,8 @@ var LectureSchema = new Schema({
   title: String,
   author: String,
   pdfPath: String,
-  currentPage: Number
+  currentPage: Number,
+  userFriendlyId : Number
 });
 
 module.exports = mongoose.model('Lecture', LectureSchema);

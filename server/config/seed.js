@@ -6,6 +6,8 @@
 'use strict';
 
 var User = require('../api/user/user.model');
+var UserFriendlyIdCounter = require('../api/lecture/userFriendlyIdCounter.model');
+var Lecture = require('../api/lecture/lecture.model');
 
 // Three users by default : two students and one teacher
 User.find({}).remove(function() {
@@ -29,6 +31,19 @@ User.find({}).remove(function() {
     password: 'pass'
   }, function() {
       console.log('finished populating users');
+    }
+  );
+});
+
+Lecture.find({}).remove();
+
+//the counter used for lectures
+UserFriendlyIdCounter.find({}).remove(function() {
+  UserFriendlyIdCounter.create({
+    id: '1',
+    countValue: '1'
+  }, function() {
+      console.log('finished populating counters');
     }
   );
 });

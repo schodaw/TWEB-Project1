@@ -8,6 +8,7 @@ var router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/:id/chats', controller.showChat);
+router.get('/byUserFriendlyId/:id', controller.getByUserfriendlyId);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
