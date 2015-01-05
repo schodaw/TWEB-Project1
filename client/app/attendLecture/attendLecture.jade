@@ -16,7 +16,7 @@ div
               |  / 
               span#page_count
               |   - 
-            form(style="display:inline")
+            form
               input(type='checkbox', ng-click='toggleSync()' checked)
               |  Sync slides 
       hr
@@ -25,9 +25,9 @@ div
         div#msgWrapperStudent
           .row.no-glutter(ng-repeat='chat in chatMessages')
             hr
-            .col-md-1.col-centered(style='width:25%') {{chat.time}}
-            .col-md-1.col-centered(style='width:25%') {{chat.author}}
-            .col-md-1.col-centered(style='width:50%') {{chat.content}} 
+            .col-md-1.col-centered.col1on3 {{chat.time}}
+            .col-md-1.col-centered.col2on3 {{chat.author}}
+            .col-md-1.col-centered.col3on3 {{chat.content}} 
         #chatContent
         hr
         form
@@ -37,15 +37,15 @@ div
               button.btn.btn-primary(type='submit', ng-click='addMessage()') Send
       .row
         .col-centered
-          h3(style='margin-top: 0px;') Mood
-          .row(style='margin-top:10px')
+          h3.mood Mood
+          .row.rowMood
             .col-md-6.col-centered
-                button.btn.btn-primary(style='width:100%') speed up !
+                button.btn.btn-primary.buttonMood speed up !
             .col-md-6.col-centered
-                button.btn.btn-primary(style='width:100%') I am lost...
-          .row(style='margin-top:10px')
+                button.btn.btn-primary.buttonMood I am lost...
+          .row.rowMood
             .col-md-6.col-centered
-                button.btn.btn-primary(style='width:100%') slow down !
+                button.btn.btn-primary.buttonMood slow down !
             .col-md-6.col-centered
-                button.btn.btn-primary(style='width:100%') Cool
+                button.btn.btn-primary.buttonMood Cool
           
