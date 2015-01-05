@@ -53,7 +53,6 @@ X = not working
 #Pending work#
 - Expand the PDF display size
 - Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
-- Change pdf upload functionnality to upload on amazone s3.
 
 #Run project locally#
 

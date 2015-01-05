@@ -12,30 +12,9 @@ angular.module('twebProject1App')
     
     // roles are not working most of the time
     //if(Auth.isTeacher()) {
-       /*
+        /*
         * Create a lectureModel
         */
-        //we are using the module angular-file-upload : https://github.com/danialfarid/angular-file-upload#node
-    /*
-        $scope.onFileSelect = function($files) {
-            //$files: an array of files selected, each file has name, size, and type.
-            for (var i = 0; i < $files.length; i++) {
-              var file = $files[i];
-              $scope.upload = $upload.upload({
-                url: '/upload',
-                data: {title: $scope.newLectureModelTitle, author: $scope.newLectureModelAuthor},
-                file: file
-              }).progress(function(evt) {
-                document.getElementById('uploadProgress').textContent = 'upload progress : ' + parseInt(100.0 * evt.loaded / evt.total) + '%';
-                console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-              }).success(function(data, status, headers, config) {
-                // file is uploaded successfully
-                console.log(data);
-              });
-            }
-          };
-    */
-    
         /**
         * Amazon S3
         */
@@ -67,6 +46,8 @@ angular.module('twebProject1App')
               else {
                 // Success!
                 alert('Upload Done');
+                //creating the lecture model in the database
+                $http.post('/api/lectureModels', { title: $scope.newLectureModelTitle, author: $scope.newLectureModelAuthor, pdfPath: "https://s3.eu-central-1.amazonaws.com/tweb-project-pdf/" + $scope.file.name });
               }
             })
             .on('httpUploadProgress',function(progress) {
