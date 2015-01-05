@@ -61,9 +61,6 @@ X = not working
 - clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
 - go at the root : `cd TWEB-Project1`
 - install npm and bower modules : `npm install` and `bower install`
-- make sure to have the right folder path for pdf upload set in server/routes.js, the line 14 should be :
-  - var pdfUploadDir = './public/data'; if the project is on heroku
-  - var pdfUploadDir = './client/data'; if the project is run locally
 - build the project : `grunt build`
 - run the project locally : `grunt serve`
 - The project is now accessible at http://localhost:9000
