@@ -22,11 +22,7 @@ angular.module('twebProject1App')
           $scope.file = $files[0];
         }
         
-        $scope.creds = {
-          bucket: 'tweb-project-pdf',
-          access_key: 'AKIAJAAXNLEZ7F7KMXTA',
-          secret_key: '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'
-        }
+
 
         $scope.createLectureModel = function() {            
           // Configure The S3 Object 
