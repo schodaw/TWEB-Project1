@@ -23,7 +23,7 @@ div
       .row
         h3 Chat
         div#msgWrapperStudent
-          .row.no-glutter(ng-repeat='chat in chatMessages')
+          .row.no-glutter(ng-repeat='chat in chatMessages' ng-init='scrollDown()')
             hr
             .col-md-1.col-centered.col1on3 {{chat.time}}
             .col-md-1.col-centered.col2on3 {{chat.author}}

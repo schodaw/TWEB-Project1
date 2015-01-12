@@ -9,6 +9,13 @@
 angular.module('twebProject1App')
   .controller('GivelectureCtrl', function ($scope, $http, socket, $location, Auth, $window) {
 
+    /*
+    * function to handle automatic scrolldown of chat messages display
+    */
+    $scope.scrollDown = function() {
+        var scrollBar = document.getElementById("msgWrapper");
+        scrollBar.scrollTop = scrollBar.scrollHeight;
+    }
 
     /* ** PDFJS function ** */
     /**

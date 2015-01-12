@@ -8,6 +8,13 @@
 angular.module('twebProject1App')
   .controller('AttendlectureCtrl', function ($scope, $http, socket, $location, Auth, $window) {
 
+    /*
+    * function to handle automatic scrolldown of chat messages display
+    */
+    $scope.scrollDown = function() {
+        var scrollBar = document.getElementById("msgWrapperStudent");
+        scrollBar.scrollTop = scrollBar.scrollHeight;
+    }
 
     /* ** PDFJS function ** */
     /**

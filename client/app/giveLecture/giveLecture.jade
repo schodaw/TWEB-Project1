@@ -18,9 +18,9 @@ div
       .row.no-gutter
         h3 Chat
         div#msgWrapper
-          .row.no-glutter(ng-repeat='chat in chatMessages')
+          .row.no-glutter(ng-repeat='chat in chatMessages' ng-init='scrollDown()')
             hr
             .col-md-1.col-centered.col1on3 {{chat.time}}
-            .col-md-1.col-centered.col1on3 {{chat.author}}
-            .col-md-1.col-centered.col1on3 {{chat.content}} 
+            .col-md-1.col-centered.col2on3 {{chat.author}}
+            .col-md-1.col-centered.col3on3 {{chat.content}} 
         #chatContent
