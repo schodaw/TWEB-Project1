@@ -21,8 +21,9 @@ angular.module('twebProject1App')
         $scope.onFileSelect = function($files) {
           $scope.file = $files[0];
         }
+    
         
-
+        //TODO : Amazon S3 credentials
 
         $scope.createLectureModel = function() {            
           // Configure The S3 Object 
