@@ -17,6 +17,20 @@ angular.module('twebProject1App')
         scrollBar.scrollTop = scrollBar.scrollHeight;
     }
 
+    /*
+    *   PDFJS
+    */
+    // Calculate the navigator size
+    var viewportHeight = document.documentElement.clientHeight;              
+
+    var pdfDoc = null,
+      pageNum = 1,
+      pageRendering = false,
+      pageNumPending = null,
+      scale = 1,
+      canvas = document.getElementById('the-canvas'),
+      ctx = canvas.getContext('2d');
+    
     /* ** PDFJS function ** */
     /**
     * If another page rendering in progress, waits until the rendering is
@@ -44,41 +58,6 @@ angular.module('twebProject1App')
         socket.socket.emit('changePage', {lectureId: $scope.lectureId, pageNum:num});
     }
     
-    // roles are not working most of the time
-    // if(Auth.isTeacher()) {
-    
-        //the lecture that we are giving is passed as a query string
-        $scope.lectureId = $location.search().lecture
-
-        /*
-        * Chat
-        */
-
-        $scope.chatMessages = [];
-
-        //get chat messages of lecture
-        $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
-            $scope.chatMessages = chatMessages;
-            //live syncronization of chat messages 
-            socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
-                $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
-            });
-        });
-
-        /*
-        *   PDFJS
-        */
-        // Calculate the navigator size
-        var viewportHeight = document.documentElement.clientHeight;              
-
-        var pdfDoc = null,
-          pageNum = 1,
-          pageRendering = false,
-          pageNumPending = null,
-          scale = 1,
-          canvas = document.getElementById('the-canvas'),
-          ctx = canvas.getContext('2d');
-
     /* ** PDFJS function ** */
     /**
     * Get page info from document, resize canvas accordingly, and render page.
@@ -91,7 +70,7 @@ angular.module('twebProject1App')
         pdfDoc.getPage(num).then(function(page) {
           // Detect the document's format
           var portrait = (page.getViewport(1.0).width < page.getViewport(1.0).height);
-          
+
           // Set canvas's height
           canvas.setAttribute('style', "height:" + viewportHeight +"px");     
 
@@ -128,12 +107,35 @@ angular.module('twebProject1App')
               renderPage(pageNumPending);
               pageNumPending = null;
             }
+              
+            // Update page counters
+            document.getElementById('page_num').textContent = num;
           });
         });
-
-        // Update page counters
-        document.getElementById('page_num').textContent = num;
     }
+    
+
+    Auth.isLoggedInAsync(function(success) {
+    console.log("Current user role: " + Auth.getCurrentUser().role);
+    $scope.isTeacher = Auth.isTeacher();
+    if(Auth.isTeacher()) {
+        
+        //the lecture that we are giving is passed as a query string
+        $scope.lectureId = $location.search().lecture
+
+        /*
+        * Chat
+        */
+        $scope.chatMessages = [];
+
+        //get chat messages of lecture
+        $http.get('/api/lectures/' + $scope.lectureId + '/chats').success(function(chatMessages) {
+            $scope.chatMessages = chatMessages;
+            //live syncronization of chat messages 
+            socket.syncUpdates('chat', $scope.chatMessages, function(event, item, object) {
+                $scope.chatMessages = object.filter(function(chat) {return chat.lectureId == $scope.lectureId;});
+            });
+        });
 
         //get lecture info
         $http.get('/api/lectures/' + $scope.lectureId).success(function(lecture) {
@@ -174,10 +176,8 @@ angular.module('twebProject1App')
             }
             changePage(++pageNum);
         }
-// roles are not working most of the time
-/*
     } else {
         $window.location = '/';
     }
-*/
   });
+});
