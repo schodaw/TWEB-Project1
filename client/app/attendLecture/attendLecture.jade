@@ -40,12 +40,12 @@ div
           h3.mood Mood
           .row.rowMood
             .col-md-6.col-centered
-                button.btn.btn-primary.buttonMood speed up !
+                button.btn.btn-primary.buttonMood(ng-click='addMoodMessage(\'speed up !\')') speed up !
             .col-md-6.col-centered
-                button.btn.btn-primary.buttonMood I am lost...
+                button.btn.btn-primary.buttonMood(ng-click='addMoodMessage(\'I am lost !\')') I am lost...
           .row.rowMood
             .col-md-6.col-centered
-                button.btn.btn-primary.buttonMood slow down !
+                button.btn.btn-primary.buttonMood(ng-click='addMoodMessage(\'slow down !\')') slow down !
             .col-md-6.col-centered
-                button.btn.btn-primary.buttonMood Cool
+                button.btn.btn-primary.buttonMood(ng-click='addMoodMessage(\'cool !\')') Cool
           

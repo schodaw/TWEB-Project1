@@ -45,16 +45,23 @@ angular.module('twebProject1App')
             });
         });
 
-        //add a message to the chat
+        //add a message to the chat entered in the input field
         $scope.addMessage = function() {
           if($scope.newMessage === '') {
             return;
           }
-          var date = new Date();
-          $http.post('/api/chats', { lectureId: $scope.lectureId, time: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(), author: Auth.getCurrentUser().name, content: $scope.newMessage });
+          sendChatMessage($scope.newMessage);
           $scope.newMessage = '';
         };
-
+        //add a message to the chat on the click of a mood button
+        $scope.addMoodMessage = function(message) {
+          sendChatMessage(message);
+        };
+        //add a message to the chat
+        function sendChatMessage(message) {
+          var date = new Date();
+          $http.post('/api/chats', { lectureId: $scope.lectureId, time: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(), author: Auth.getCurrentUser().name, content: message });
+        }
 
         /*
         *   PDFJS

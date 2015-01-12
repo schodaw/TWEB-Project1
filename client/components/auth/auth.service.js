@@ -16,7 +16,7 @@ angular.module('twebProject1App')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      login: function(user, callback) {
+      login: function (user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
 
@@ -24,14 +24,23 @@ angular.module('twebProject1App')
           email: user.email,
           password: user.password
         }).
-        success(function(data) {
+        /* ORIGINAL CODE -- promise is resolved too early
+        success(function (data) {
+          $cookieStore.put('token', data.token);
+          currentUser = User.get();
+          deferred.resolve(data);
+          return cb();
+        }).
+        */
+        /* PROPOSED FIX -- promise is resolved once HTTP call has returned */
+        success(function (data) {
           $cookieStore.put('token', data.token);
           currentUser = User.get(function() {
             deferred.resolve(data);
             return cb();
           });
         }).
-        error(function(err) {
+        error(function (err) {
           this.logout();
           deferred.reject(err);
           return cb(err);
@@ -57,10 +66,11 @@ angular.module('twebProject1App')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      createUser: function(user, callback) {
+      createUser: function (user, callback) {
         var cb = callback || angular.noop;
 
-        return User.save(user,
+         /* ORIGINAL CODE ---------------------
+         return User.save(user,
           function(data) {
             $cookieStore.put('token', data.token);
             currentUser = User.get();
@@ -70,6 +80,26 @@ angular.module('twebProject1App')
             this.logout();
             return cb(err);
           }.bind(this)).$promise;
+           --------------------- */
+
+        /* PROPOSED FIX --------------------- */
+        var deferred = $q.defer();
+        User.save(user,
+          function (data) {
+            $cookieStore.put('token', data.token);
+            currentUser = User.get(function () {
+              console.log('User.save(), user role: ' + currentUser.role);
+              deferred.resolve(data);
+              return cb(currentUser);
+            });
+          },
+          function (err) {
+            this.logout();
+            return cb(err);
+            deferred.reject(err);
+          });
+        return deferred.promise;
+
       },
 
       /**
