@@ -60,6 +60,15 @@ X = not working
 - clone repo : `git clone https://github.com/schodaw/TWEB-Project1.git`
 - go at the root : `cd TWEB-Project1`
 - install npm and bower modules : `npm install` and `bower install`
+- In /client/app/main/main.controller.js you have to insert the Amazon S3 credentials of the ARN User able to publish and retrieve document in the Amazon S3 bucket used in the application at line 26 like this :
+  ```javascript
+$scope.creds = {
+    bucket: 'tweb-project-pdf',
+    access_key: 'ARN_USER_ACCESS_KEY',
+    secret_key: 'ARN_USER_SECRET_KEY'
+    
+  }
+  ```
 - build the project : `grunt build`
 - run the project locally : `grunt serve`
 - The project is now accessible at http://localhost:9000
