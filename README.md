@@ -33,7 +33,7 @@ X = not working
 | Send chat messages                                                | O     | O      |
 | Stop slide synchronisation to be able to browse the lecture's pdf | O     | O      |
 | Answer poll                                                       | X     | X      |
-| Send mood info                                                    | X     | X      |
+| Send mood info                                                    | O     | O      |
 
 | Teacher                                                           | Local | Heroku |
 |-------------------------------------------------------------------|-------|--------|
@@ -51,7 +51,6 @@ X = not working
 
 
 #Pending work#
-- Expand the PDF display size
 - Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
 
 #Run project locally#
