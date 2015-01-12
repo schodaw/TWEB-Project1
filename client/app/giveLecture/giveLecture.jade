@@ -20,7 +20,7 @@ div
         div#msgWrapper
           .row.no-glutter(ng-repeat='chat in chatMessages')
             hr
-            .col-md-1.col-centered(style='width:25%;') {{chat.time}}
-            .col-md-1.col-centered(style='width:25%;') {{chat.author}}
-            .col-md-1.col-centered(style='width:50%;') {{chat.content}} 
+            .col-md-1.col-centered.col1on3 {{chat.time}}
+            .col-md-1.col-centered.col1on3 {{chat.author}}
+            .col-md-1.col-centered.col1on3 {{chat.content}} 
         #chatContent
