@@ -83,16 +83,15 @@ angular.module('twebProject1App')
                                             $window.location = '/giveLecture?lecture=' + lecture._id;
                                         });
                 };
-            //}
-
-            /**
-            * Join a lecture (student)
-            */
-            $scope.joinLecture = function() {
-                $http.get('/api/lectures/byUserFriendlyId/' + $scope.lecture.userFriendlyId).success(function(lecture) {
-                    $window.location = '/attendLecture?lecture=' + lecture._id;
-                });
-            };
         }
+
+        /**
+        * Join a lecture (student)
+        */
+        $scope.joinLecture = function() {
+            $http.get('/api/lectures/byUserFriendlyId/' + $scope.lecture.userFriendlyId).success(function(lecture) {
+                $window.location = '/attendLecture?lecture=' + lecture._id;
+            });
+        };
     });
 });
