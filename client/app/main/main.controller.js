@@ -23,7 +23,9 @@ angular.module('twebProject1App')
                 }
 
 
-                //TODO : Amazon S3 credentials
+                //Amazon S3 credentials
+
+
 
                 $scope.createLectureModel = function() {            
                   // Configure The S3 Object 

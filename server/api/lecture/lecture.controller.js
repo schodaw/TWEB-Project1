@@ -5,7 +5,7 @@ var Lecture = require('./lecture.model');
 
 var Chat = require('../chat/chat.model');
 
-var UserFriendlyIdCounter = require('./UserFriendlyIdCounter.controller');
+var UserFriendlyIdCounter = require('./userFriendlyIdCounter.controller');
 
 // Get list of lectures
 exports.index = function(req, res) {
