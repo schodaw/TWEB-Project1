@@ -46,6 +46,7 @@ exports.showChat = function(req, res) {
 };
 
 // Creates a new lecture in the DB.
+// The user_friendly_id is generated in this function with a UserFriendlyIdCounter
 exports.create = function(req, res) {
   UserFriendlyIdCounter.increment(req, res, function (result) {
       req.body.userFriendlyId = result;

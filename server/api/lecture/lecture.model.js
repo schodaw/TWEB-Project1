@@ -1,5 +1,5 @@
 /*
- * Model of a current lecture given by a teacher
+ * Model of a lecture currently given by a teacher
  *
  * Components of a lecture :
  * - title : title of the lecture

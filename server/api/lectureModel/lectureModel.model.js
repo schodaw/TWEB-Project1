@@ -1,5 +1,6 @@
 /*
- * Model of a slide deck
+ * Model of a slide deck.
+ * A LectureModel stores a slide deck and can then be used to create Lecture that a user is giving.
  *
  * Components of a slide deck :
  * - title : title of the lecture

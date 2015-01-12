@@ -5,12 +5,13 @@ header#banner.hero-unit
     p.lead Join or create your classroom lecture
 .container
   .row
-    .col-lg-3
-      h1 Join a lecture:
-    .col-lg-4
+    .col-lg-12
+      h1 Join a lecture
+      p The lecture code is displayed in the upper-right corner of the page displaying a lecture currently given by a teacher
+    .col-sm-6
       form.thing-form
         p.input-group
-          input.form-control(type='text', placeholder='Type the lecture code', ng-model='lecture.userFriendlyId')
+          input.form-control(type='text', placeholder='Type the lecture code given by the teacher', ng-model='lecture.userFriendlyId')
           span.input-group-btn
             button.btn.btn-primary(type='submit', ng-click='joinLecture()') Join
   // roles are not working most of the time
