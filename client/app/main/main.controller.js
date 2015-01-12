@@ -26,7 +26,6 @@ angular.module('twebProject1App')
                 //Amazon S3 credentials
 
 
-
                 $scope.createLectureModel = function() {            
                   // Configure The S3 Object 
                   AWS.config.update({ accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key });
