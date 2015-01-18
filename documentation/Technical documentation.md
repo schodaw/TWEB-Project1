@@ -1,8 +1,7 @@
 Technical documentation
 =========================
 
-
-This section targets people who wish to know more about how our [**Classroom Conference WebApp**](http://tweb-project3-jollien-ngo.herokuapp.com/ "Go to the web application on Heroku") works inside, including software developers who wish to contribute to its development, or users who want to investigate a problem with our wepapp in greater depth. (If you are only looking for information on how to download and run the app localy, see the [End-user documentation page](https://github.com/schodaw/TWEB-Project1/blob/master/README.md "End-user documentation page (on Github)") instead.)
+This section targets people who wish to know more about how our <a href="http://tweb-project3-jollien-ngo.herokuapp.com/" target="_blank">**Classroom Conference WebApp**</a> works inside, including software developers who wish to contribute to its development, or users who want to investigate a problem with our wepapp in greater depth. (If you are only looking for information on how to download and run the app localy, see the [End-user documentation page](https://github.com/schodaw/TWEB-Project1/blob/master/README.md "End-user documentation page (on Github)") instead.)
 
 ------------
 
@@ -118,7 +117,9 @@ A version can be :
 
 ### Bootstrap <a id="Bootstrap"></a>
 
-**Bootstrap** is the most popular HTML, CSS and Javascript framework for developing faster and easier front-end web project. It is a free collection of HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components. Using the system of layout grid, Bootstrap scales our web application by resizing differents components according to the percentages of space occupied. It totally supports  responsive web design for laptops, tablets or mobile phones. 
+**Bootstrap** is the most popular HTML, CSS and Javascript framework for developing faster and easier front-end web project. It is a free collection of HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components. 
+
+Using the system of layout grid, Bootstrap scales our web application by resizing differents components according to the percentages of space occupied. It totally supports  responsive web design for laptops, tablets or mobile phones. 
 
 An example of a simple form and a button, wrapped by two columns and a row :
 	
@@ -140,7 +141,9 @@ An example of a simple form and a button, wrapped by two columns and a row :
 
 ### AngularJS <a id="AngularJS"></a>
 
-**AngularJS** is an open-source web application framework for client-side model-view-controller which allows to develop single-page application. It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables.
+**AngularJS** is an open-source web application framework for client-side model-view-controller which allows to develop single-page application. 
+
+It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables.
 
 An example of the directive `ng-repeat` and the variable `chat` :
 
@@ -171,27 +174,13 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 The binding is two-ways.
 
 
+### PDF.js <a id="PDF.js"></a>
+
+**PDF.js** is a JavaScript library intended to render PDF files using the HTML5 Canvas. It relies on the use of promises.
+
+The function `renderParge(pageNumber)` gets page info from document, resize canvas accordingly, and render page. The function `queueRenderPage(pageNumber)` handles the queue of pages rendering. The three functions `onPrevPage()`, `onNextPage()` and `changePage(pageNumber)` allow to change the page
 
 
-##### File-upload
-
-For the file-upload, the angular module ng-file-upload from has been used (https://github.com/danialfarid/angular-file-upload) for the front-end.
-
-    $scope.upload = $upload.upload({
-                            url: '/upload',
-                            method: 'POST',
-                            data: {
-                                id: $scope.lectureId,
-                                teacherId: Auth.getCurrentUser()._id
-                            },
-                            file: file,
-                        })...
-
-This script from the file-upload module send the file as HTTP POST request which wraps the binary data (the pdf-file) to the URL "/upload".
-
-To see the server-side handling for the file-upload, just have a look at the section "Backend - File-upload".
-
-##### blockUI
 
 
 
