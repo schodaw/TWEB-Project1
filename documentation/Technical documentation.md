@@ -7,24 +7,24 @@ This section targets people who wish to know more about how our <a href="http://
 
 # Summary
 
-[**Frameworks and Libraries**](#Frameworks_and_Libraries)
-
-[*.....Scaffolding and Pipelining*](#Scaffolding_and_Pipelining)
-
-[..........Yo](#Yo)
-
-[..........Grunt.js](#Grunt.js)
-
-[*.....Frontend*](#Frontend)
-
-[..........Bower](#Bower)
-
-[..........Bootstrap](#Bootstrap)
-
-[..........AngularJS](#AngularJS)
+* [Frameworks and Libraries](#Frameworks_and_Libraries)
+	* [Scaffolding and Pipelining](#Scaffolding_and_Pipelining)
+		* [Yo](#Yo)
+		* [Grunt.js](#Grunt.js)
+	* [Frontend](#Frontend)
+		* [Bower](#Bower)
+		* [Bootstrap](#Bootstrap)
+		* [AngularJS](#AngularJS)
+		* [PDF.js](#PDF.js)
+	* [Backend](#Backend)
+		* [](#)
+		* [](#)
+		* [](#)
+		* [](#)
+		* [Jade](#Jade)
+		* [Stylus](#Stylus)
 
 [](#)
-
 
 ------------
 
@@ -182,6 +182,54 @@ The function `renderParge(pageNumber)` gets page info from document, resize canv
 
 
 
+### Jade <a id="Jade"></a>
+
+**Jade** is a template engine implemented with JavaScript for server side templating in NodeJS, at the request processing time. The client sends
+an HTTP request. The server builds a model and injects it into a compiled template. The result is sent back to the client. 
+
+Jade a templating language for html, so it makes writing html less verbose. It's whitespace sensitive, we can nest tags within other tags just by indenting them. Simple short hands help to reduce typing effort like adding IDs and classes, adding attributes to tags, etc.
+
+Here are some examples of theses advantages in `giveLecture.jade`.
+
+Example of using indent : 
+
+	div
+	.container-fluid  
+	  .row.no-gutter
+	    .col-md-9.col-centered.fill.left
+
+Examples of adding IDs and classes : 
+
+	.col-md-3.col-centered.right
+
+	div#msgWrapper
+
+
+Examples of adding attributes to tags :
+
+	canvas#the-canvas
+
+	span#page_num
+
+
+### Stylus <a id="Stylus"></a>
+
+**Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for NodeJS. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
+
+An example in `giveLecture.styl` :
+
+	h3
+	    margin-top: 0px
+	    margin-bottom: 0px
+	    
+	#msgWrapper
+	    height:550px
+	    width:100%
+	    overflow-y: scroll
+	    overflow-x: hidden
+	    
+	.col1on3
+	    width:25%
 
 
 # Source code organization
