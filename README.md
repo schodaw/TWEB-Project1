@@ -53,6 +53,11 @@ X = not working
 #Pending work#
 - Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
 
+#PDF slide deck storage
+The PDFs are stored on a Amazon S3 bucket.
+
+Warning ! To prevent the bucket from being filled and keep it free the PDFs are deleted after 5 days !
+
 #Run project locally#
 
 - In order to run the project locally, we need to run `mongodb` in administrator mode (use mongod executable).
