@@ -3,38 +3,40 @@ Technical documentation
 
 This section targets people who wish to know more about how our <a href="http://tweb-project3-jollien-ngo.herokuapp.com/" target="_blank">**Classroom Conference WebApp**</a> works inside, including software developers who wish to contribute to its development, or users who want to investigate a problem with our wepapp in greater depth. (If you are only looking for information on how to download and run the app localy, see the [End-user documentation page](https://github.com/schodaw/TWEB-Project1/blob/master/README.md "End-user documentation page (on Github)") instead.)
 
-------------
+---
+
+Frameworks and Libraries
+=========================
+
+
 
 # Summary
 
-* [Frameworks and Libraries](#Frameworks_and_Libraries)
-	* [Scaffolding and Pipelining](#Scaffolding_and_Pipelining)
-		* [Yo](#Yo)
-		* [Grunt.js](#Grunt.js)
-	* [Frontend](#Frontend)
-		* [Bower](#Bower)
-		* [Bootstrap](#Bootstrap)
-		* [AngularJS](#AngularJS)
-		* [PDF.js](#PDF.js)
-	* [Backend](#Backend)
-		* [](#)
-		* [](#)
-		* [](#)
-		* [](#)
-		* [Jade](#Jade)
-		* [Stylus](#Stylus)
+* [**Scaffolding and Pipelining**](#Scaffolding_and_Pipelining)
+	* [Yo](#Yo)
+	* [Grunt.js](#Grunt.js)
+* [**Frontend**](#Frontend)
+	* [Bower](#Bower)
+	* [Bootstrap](#Bootstrap)
+	* [AngularJS](#AngularJS)
+	* [PDF.js](#PDF.js)
+* [**Backend**](#Backend)
+	* [](#)
+	* [](#)
+	* [](#)
+	* [](#)
+	* [Jade](#Jade)
+	* [Stylus](#Stylus)
 
 [](#)
 
 ------------
 
-# Frameworks and Libraries <a id="Frameworks_and_Libraries"></a>
-
-## Scaffolding and Pipelining <a id="Scaffolding_and_Pipelining"></a>
+# Scaffolding and Pipelining <a id="Scaffolding_and_Pipelining"></a>
 
 At the beginning, we start our project from scratch and generate an application skeleton. In order to setup a complete, automated, efficient and reliable development workflow, we will use **Yo** and **Grunt**. 
 
-### Yo <a id="Yo"></a>
+## Yo <a id="Yo"></a>
 
 **Yo** is a tool for generating project skeletons (scaffolding), and we use the **AngularJS Full-Stack** generator like framework. 
 
@@ -55,7 +57,7 @@ Generates a new route :
 	yo angular-fullstack:route attendLecture
 
 
-### Grunt.js <a id="Grunt.js"></a>
+## Grunt.js <a id="Grunt.js"></a>
 
 **Grunt.js** is a JavaScript based task runner and using JSON for configuration. It is used to automate repetitive tasks in our development workflow. We use it to automate tasks like compilation, versioning, testing, deploying etc. 
 
@@ -73,9 +75,9 @@ Commit and push the resulting build to heroku, :
 	grunt buildcontrol:heroku
 
 
-## Frontend <a id="Frontend"></a>
+# Frontend <a id="Frontend"></a>
 
-### Bower <a id="Bower"></a>
+## Bower <a id="Bower"></a>
 
 **Bower** is a tool for managing web dependencies for the front-end : frameworks, libraries, assets and utilities. Bower uses a flat dependency tree, requiring only one version for each package, reducing page load to a minimum. It works by fetching and installing packages, taking care of finding and downloading. Bower keeps track of these packages in a manifest file `bower.json`
 
@@ -115,7 +117,7 @@ A version can be :
 - semver version : `1.2.3`
 - version range : `>=1.2.`, `~2.1.2`
 
-### Bootstrap <a id="Bootstrap"></a>
+## Bootstrap <a id="Bootstrap"></a>
 
 **Bootstrap** is the most popular HTML, CSS and Javascript framework for developing faster and easier front-end web project. It is a free collection of HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components. 
 
@@ -139,7 +141,7 @@ An example of a simple form and a button, wrapped by two columns and a row :
 	</div>		
 
 
-### AngularJS <a id="AngularJS"></a>
+## AngularJS <a id="AngularJS"></a>
 
 **AngularJS** is an open-source web application framework for client-side model-view-controller which allows to develop single-page application. 
 
@@ -174,7 +176,7 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 The binding is two-ways.
 
 
-### PDF.js <a id="PDF.js"></a>
+## PDF.js <a id="PDF.js"></a>
 
 **PDF.js** is a JavaScript library intended to render PDF files using the HTML5 Canvas. It relies on the use of promises.
 
@@ -182,7 +184,7 @@ The function `renderParge(pageNumber)` gets page info from document, resize canv
 
 
 
-### Jade <a id="Jade"></a>
+## Jade <a id="Jade"></a>
 
 **Jade** is a template engine implemented with JavaScript for server side templating in NodeJS, at the request processing time. The client sends
 an HTTP request. The server builds a model and injects it into a compiled template. The result is sent back to the client. 
@@ -212,7 +214,7 @@ Examples of adding attributes to tags :
 	span#page_num
 
 
-### Stylus <a id="Stylus"></a>
+## Stylus <a id="Stylus"></a>
 
 **Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for NodeJS. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
 
