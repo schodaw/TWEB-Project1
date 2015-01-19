@@ -292,7 +292,7 @@ Extract from "attendLectureController.js" :
 
 ### Jade <a id="Jade"></a>
 
-**Jade** is a template engine implemented with JavaScript for server side templating in NodeJS, at the request processing time. The client sends
+**Jade** is a template engine implemented with JavaScript for server side templating in Node.js, at the request processing time. The client sends
 an HTTP request. The server builds a model and injects it into a compiled template. The result is sent back to the client. 
 
 Jade is a templating language for html, so it makes writing html less verbose. It's whitespace sensitive, we can nest tags within other tags just by indenting them. Simple short hands help to reduce typing effort like adding IDs and classes, adding attributes to tags, etc.
@@ -338,7 +338,7 @@ Result in HTML :
 
 ### Stylus <a id="Stylus"></a>
 
-**Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for NodeJS. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
+**Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for Node.js. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
 
 An example from `giveLecture.styl` :
 
@@ -448,6 +448,23 @@ Extract from `mainController.js` :
 After the upload on Amazon S3 is complete, the URL to the PDF is inserted in the database as a LectureModel.
 
 ### MongoDB <a id="MongoDB"></a>
+
+**MongoDB** is a schema-less documented-oriented database, classified as a popular **NoSQL** databases. The database contains several collections which are set of documents. These documents behave like JSON objects.
+
+In order to access the database, the program loads the Node.js driver for mongoDB. We can connect to the mongoDB server and execute queries to manipulate collections and documents.
+	
+
+Example of code using MongoDB :
+
+	//connection to the database
+	var	MongoClient	=	require('mongodb').MongoClient;	
+	MongoClient.connect("mongodb://localhost:27017/exampleDb",	function(err,	db) {
+		//creation of a new collection
+		var	collection	=	db.collection(‘test');
+		//creation of documents in the collection
+		var	setOfDocs	=	[{'hello':'doc3'},	{'hello':'doc4'}];
+		collection.insert(setOfDocs, {w:1},	function(err, result) {});
+	};
 
 ### Mongoose <a id="Mongoose"></a>
 
