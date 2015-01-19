@@ -14,7 +14,7 @@ This section targets people who wish to know more about how our <a href="http://
 	* [*Frontend*](#Frontend)
 		* [Bower](#Bower)
 		* [Bootstrap](#Bootstrap)
-		* [AngularJS](#AngularJS)
+		* [Angular.js](#Angular.js)
 		* [PDF.js](#PDF.js)
 	* [*Backend*](#Backend)		
 		* [Jade](#Jade)
@@ -43,9 +43,9 @@ At the beginning, we start our project from scratch and generate an application 
 
 ### Yo <a id="Yo"></a>
 
-**Yo** is a tool for generating project skeletons (scaffolding), and we use the **AngularJS Full-Stack** generator like framework. 
+**Yo** is a tool for generating project skeletons (scaffolding), and we use the **Angular.js Full-Stack** generator like framework. 
 
-Runs the generator and sets up a new AngularJS + Express app : 
+Runs the generator and sets up a new Angular.js + Express app : 
 
 	yo angular-fullstack twebProject1App
 
@@ -163,11 +163,11 @@ An example of a simple form and a button, wrapped by two columns and a row :
 	</div>		
 
 
-### AngularJS <a id="AngularJS"></a>
+### Angular.js <a id="Angular.js"></a>
 
-**AngularJS** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
+**Angular.js** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
 
-It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables. The binding is two-ways.
+It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular.js to bind input or output parts of the page to a model that is represented by JavaScript variables. The binding is two-ways.
 
 An example of the directive `ng-repeat` and the variable `chat` :
 
@@ -196,7 +196,7 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 	  .col-md-1.col-centered.col2on3 {{chat.author}}
 	  .col-md-1.col-centered.col3on3 {{chat.content}} 
 	
-With this code, the chat messages are stored in the scope in the variable chatMessages. Angular generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
+With this code, the chat messages are stored in the scope in the variable chatMessages. Angular.js generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
 The function syncUpdates provided by the scaffolding provides a dynamic update of the chat messages with Socket.IO.
 
 ### PDF.js <a id="PDF.js"></a>
