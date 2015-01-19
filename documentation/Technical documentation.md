@@ -350,6 +350,32 @@ Extract from "app.js" in the "server" folder (so on the back-end)
     exports = module.exports = app;
 	
 ## Socket.IO
+
+Socket.IO is a library implementing the WebSocket API. WebSocket API and protocol are defined to allow bi-directionnal communication between the HTTP server and client. So with this protocol ther server can push notifications to the client. The advantage of Socket.IO is that it supports several communication channels and mechanisms so depending on the browser capabilities, it can fall back on older techniques (such as long polling).
+
+In the project we use a Bower compenent called `angular-socket-io` to facilitate the use of Socket.io from an Angular.js application.
+
+The code below show how we use Socket.IO for the slideshow. When the teacher display the next slide a message si sent to the web server which broadcast it to all the students.
+
+Extract from "giveLectureController.js" :
+	//on the client, the teacher send an event called "changePage" to the server with Socket.IO
+	socket.socket.emit('changePage', {lectureId: $scope.lectureId, pageNum:num});
+
+Extract from "lecture.socket.js" :
+	//on the server, we react to the event by broadcasting it to every students
+	socket.on('changePage', function(data) {
+		socket.broadcast.emit('changePage', data);
+	});
+	
+Extract from "attendLectureController.js" :
+	//on the client, the student react to the event by refreshing the pdf display
+    socket.socket.on('changePage', function(data) {
+        if($scope.syncEnabled && data.lectureId === $scope.lectureId) {
+            pageNum = data.pageNum;
+			//display pdf page
+            queueRenderPage(data.pageNum);
+        }
+    });
 	
 ## Amazon S3
 To store the PDF files we use Amazon S3. But to prevent it from being filled and keep it free, the PDFs are deleted after 5 days !
