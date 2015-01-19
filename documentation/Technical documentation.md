@@ -75,6 +75,8 @@ Extract from `api/lecture/index.js` :
 	router.patch('/:id', controller.update);
 	//delete a lecture
 	router.delete('/:id', controller.destroy);
+	
+---	
 
 # Frameworks and Libraries <a id="Frameworks_and_Libraries"></a>
 
