@@ -14,7 +14,7 @@ This section targets people who wish to know more about how our <a href="http://
 	* [*Frontend*](#Frontend)
 		* [Bower](#Bower)
 		* [Bootstrap](#Bootstrap)
-		* [AngularJS](#AngularJS)
+		* [Angular.js](#Angular.js)
 		* [PDF.js](#PDF.js)
 	* [*Backend*](#Backend)		
 		* [Jade](#Jade)
@@ -43,9 +43,9 @@ At the beginning, we start our project from scratch and generate an application 
 
 ### Yo <a id="Yo"></a>
 
-**Yo** is a tool for generating project skeletons (scaffolding), and we use the **AngularJS Full-Stack** generator like framework. 
+**Yo** is a tool for generating project skeletons (scaffolding), and we use the **Angular.js Full-Stack** generator like framework. 
 
-Runs the generator and sets up a new AngularJS + Express app : 
+Runs the generator and sets up a new Angular.js + Express app : 
 
 	yo angular-fullstack twebProject1App
 
@@ -163,11 +163,11 @@ An example of a simple form and a button, wrapped by two columns and a row :
 	</div>		
 
 
-### AngularJS <a id="AngularJS"></a>
+### Angular.js <a id="Angular.js"></a>
 
-**AngularJS** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
+**Angular.js** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
 
-It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables. The binding is two-ways.
+It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular.js to bind input or output parts of the page to a model that is represented by JavaScript variables. The binding is two-ways.
 
 An example of the directive `ng-repeat` and the variable `chat` :
 
@@ -196,7 +196,7 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 	  .col-md-1.col-centered.col2on3 {{chat.author}}
 	  .col-md-1.col-centered.col3on3 {{chat.content}} 
 	
-With this code, the chat messages are stored in the scope in the variable chatMessages. Angular generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
+With this code, the chat messages are stored in the scope in the variable chatMessages. Angular.js generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
 The function syncUpdates provided by the scaffolding provides a dynamic update of the chat messages with Socket.IO.
 
 ### PDF.js <a id="PDF.js"></a>
@@ -356,7 +356,31 @@ Extract from `app.js` in the `server` folder (so on the back-end)
 
 ### Socket.IO <a id="Socket.IO"></a>
 
+Socket.IO is a library implementing the WebSocket API. WebSocket API and protocol are defined to allow bi-directionnal communication between the HTTP server and client. So with this protocol ther server can push notifications to the client. The advantage of Socket.IO is that it supports several communication channels and mechanisms so depending on the browser capabilities, it can fall back on older techniques (such as long polling).
 
+In the project we use a Bower component called `angular-socket-io` to facilitate the use of Socket.io from an Angular.js application. We then have to inject a Angular.js dependency to `socket` in the code to be able to use it on the client.
+
+The code below show how we use Socket.IO for the slideshow. When the teacher display the next slide a message si sent to the web server which broadcast it to all the students.
+
+Extract from "giveLectureController.js" :
+	//on the client, the teacher send an event called "changePage" to the server with Socket.IO
+	socket.socket.emit('changePage', {lectureId: $scope.lectureId, pageNum:num});
+
+Extract from "lecture.socket.js" :
+	//on the server, we react to the event by broadcasting it to every students
+	socket.on('changePage', function(data) {
+		socket.broadcast.emit('changePage', data);
+	});
+	
+Extract from "attendLectureController.js" :
+	//on the client, the student react to the event by refreshing the pdf display
+    socket.socket.on('changePage', function(data) {
+        if($scope.syncEnabled && data.lectureId === $scope.lectureId) {
+            pageNum = data.pageNum;
+			//display pdf page
+            queueRenderPage(data.pageNum);
+        }
+    });
 	
 ### Amazon S3 <a id="Amazon_S3"></a>
 
@@ -403,7 +427,39 @@ Example of code using MongoDB :
 
 ### Mongoose <a id="Mongoose"></a>
 
+Mongoose is an ODM (Document Mapping system) working with MongoDB.
+We use it in our project.
+In Mongoose, you define schemas representing a MongoDB documents. You then construct documents with a constructor called "model" and then you persist them into the database.
 
+In the code below, we define a Mongoose schema called ChatSchema for chat messages which are called "chat".
+
+Extract from "chat.model.js" :
+
+	var mongoose = require('mongoose'),
+		Schema = mongoose.Schema;
+	var ChatSchema = new Schema({
+	  lectureId: String,
+	  content: String,
+	  author: String,
+	  time: String
+	});
+	module.exports = mongoose.model('Chat', ChatSchema);
+	
+Extract from "chat.controller.js" :
+
+	// Updates an existing chat in the DB.
+	exports.update = function(req, res) {
+	  if(req.body._id) { delete req.body._id; }
+	  //find the chat message to update
+	  Chat.findById(req.params.id, function (err, chat) {
+		if (err) { return handleError(res, err); }
+		if(!chat) { return res.send(404); }
+		//update the chat message
+		var updated = _.merge(chat, req.body);
+		...
+	  });
+	};
+	
 
 ----------------------------------
 
