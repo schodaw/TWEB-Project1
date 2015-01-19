@@ -8,7 +8,10 @@ This project consists of a teaching platform that allows students to follow lect
 Presentation page :
 http://quangdung.github.io/tweb-project2/
 
-It is available online at the adress :
+Which GitHub repository is available at :
+https://github.com/quangdung/quangdung.github.io/tree/master/tweb-project2
+
+The project is available online at the address :
 https://tweb-project3-jollien-ngo.herokuapp.com/
 
 Authors : Jollien Dominique and Ngo Dung
@@ -51,7 +54,7 @@ X = not working
 
 
 #Pending work#
-- Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
+- Change pages content with users roles. (For the moment, students see HTML forms for functionnalities they don't have access to. But the forms don't work when they use it.)
 
 #PDF slide deck storage
 The PDFs are stored on a Amazon S3 bucket.

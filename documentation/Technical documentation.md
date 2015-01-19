@@ -189,7 +189,7 @@ The function `renderParge(pageNumber)` gets page info from document, resize canv
 **Jade** is a template engine implemented with JavaScript for server side templating in NodeJS, at the request processing time. The client sends
 an HTTP request. The server builds a model and injects it into a compiled template. The result is sent back to the client. 
 
-Jade a templating language for html, so it makes writing html less verbose. It's whitespace sensitive, we can nest tags within other tags just by indenting them. Simple short hands help to reduce typing effort like adding IDs and classes, adding attributes to tags, etc.
+Jade is a templating language for html, so it makes writing html less verbose. It's whitespace sensitive, we can nest tags within other tags just by indenting them. Simple short hands help to reduce typing effort like adding IDs and classes, adding attributes to tags, etc.
 
 Here are some examples of theses advantages in `giveLecture.jade`.
 
@@ -200,25 +200,41 @@ Example of using indent :
 	  .row.no-gutter
 	    .col-md-9.col-centered.fill.left
 
+Result in HTML :
+
+	<div>
+		<div class="container-fluid">
+			<div class="row no-gutter">
+				<div class="col-md-9 col-centered fill left"></div>
+			</div>
+		</div>
+	</div>
+		
 Examples of adding IDs and classes : 
 
 	.col-md-3.col-centered.right
 
 	div#msgWrapper
 
+Result in HTML :
 
+	<div class="col-md-3 col-centered right"></div>
+	<div id="msgWrapper"></div>
+	
 Examples of adding attributes to tags :
 
-	canvas#the-canvas
+	input.form-control(type='text', placeholder='Write a title', ng-model='newLectureModelTitle')
 
-	span#page_num
+Result in HTML :
+
+	<input type="text" placeholder="Write a title" ng-model="newLectureModelTitle" class="form-control"/>
 
 
 ## Stylus <a id="Stylus"></a>
 
 **Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for NodeJS. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
 
-An example in `giveLecture.styl` :
+An example from `giveLecture.styl` :
 
 	h3
 	    margin-top: 0px
