@@ -356,9 +356,6 @@ Extract from `app.js` in the `server` folder (so on the back-end)
 
 ### Socket.IO <a id="Socket.IO"></a>
 
-
-## Socket.IO
-
 Socket.IO is a library implementing the WebSocket API. WebSocket API and protocol are defined to allow bi-directionnal communication between the HTTP server and client. So with this protocol ther server can push notifications to the client. The advantage of Socket.IO is that it supports several communication channels and mechanisms so depending on the browser capabilities, it can fall back on older techniques (such as long polling).
 
 In the project we use a Bower component called `angular-socket-io` to facilitate the use of Socket.io from an Angular.js application. We then have to inject a Angular.js dependency to `socket` in the code to be able to use it on the client.
