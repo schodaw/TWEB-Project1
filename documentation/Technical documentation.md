@@ -349,6 +349,8 @@ Extract from "app.js" in the "server" folder (so on the back-end)
     ...
     exports = module.exports = app;
 	
+## Socket.IO
+	
 ## Amazon S3
 To store the PDF files we use Amazon S3. But to prevent it from being filled and keep it free, the PDFs are deleted after 5 days !
 However the database of the project is not cleaned the same way and so after 5 days there will still be a link to the deleted file in the database.
