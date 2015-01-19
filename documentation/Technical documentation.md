@@ -5,38 +5,42 @@ This section targets people who wish to know more about how our <a href="http://
 
 ---
 
-Frameworks and Libraries
-=========================
-
-
-
 # Summary
 
-* [**Scaffolding and Pipelining**](#Scaffolding_and_Pipelining)
-	* [Yo](#Yo)
-	* [Grunt.js](#Grunt.js)
-* [**Frontend**](#Frontend)
-	* [Bower](#Bower)
-	* [Bootstrap](#Bootstrap)
-	* [AngularJS](#AngularJS)
-	* [PDF.js](#PDF.js)
-* [**Backend**](#Backend)
-	* [](#)
-	* [](#)
-	* [](#)
-	* [](#)
-	* [Jade](#Jade)
-	* [Stylus](#Stylus)
-
-[](#)
+* [**Frameworks and Libraries**](#Frameworks_and_Libraries)
+	* [*Scaffolding and Pipelining*](#Scaffolding_and_Pipelining)
+		* [Yo](#Yo)
+		* [Grunt.js](#Grunt.js)
+	* [*Frontend*](#Frontend)
+		* [Bower](#Bower)
+		* [Bootstrap](#Bootstrap)
+		* [AngularJS](#AngularJS)
+		* [PDF.js](#PDF.js)
+	* [*Backend*](#Backend)		
+		* [Jade](#Jade)
+		* [Stylus](#Stylus)
+		* [NPM](#NPM)
+		* [Node.js and Express](#Node.js_and_Express)
+		* [Amazon S3](#Amazon_S3)
+		* [MongoDB](#MongoDB)
+		* [Mongoose](#Mongoose)
+* [**Implementations**](#Implementations)
+	* [*Implementation of the slide-show feature*](#Implementation_of_the_slide-show_feature)
+		* [Joining a lecture](#Joining_a_lecture)
+		* [Slideshow - control system (the "Next" and "Previous" buttons)](#Slideshow_-_control_system)
+* [**Issues encountered during the project**](#Issues_encountered_during_the_project)
+	* [*User roles*](#User_roles)
+	* [*Amazon S3 credentials*](#Amazon_S3_credentials)
 
 ------------
 
-# Scaffolding and Pipelining <a id="Scaffolding_and_Pipelining"></a>
+# Frameworks and Libraries <a id="Frameworks_and_Libraries"></a>
+
+## Scaffolding and Pipelining <a id="Scaffolding_and_Pipelining"></a>
 
 At the beginning, we start our project from scratch and generate an application skeleton. In order to setup a complete, automated, efficient and reliable development workflow, we will use **Yo** and **Grunt**. 
 
-## Yo <a id="Yo"></a>
+### Yo <a id="Yo"></a>
 
 **Yo** is a tool for generating project skeletons (scaffolding), and we use the **AngularJS Full-Stack** generator like framework. 
 
@@ -57,7 +61,7 @@ Generates a new route :
 	yo angular-fullstack:route attendLecture
 
 
-## Grunt.js <a id="Grunt.js"></a>
+### Grunt.js <a id="Grunt.js"></a>
 
 **Grunt.js** is a JavaScript based task runner and using JSON for configuration. It is used to automate repetitive tasks in our development workflow. We use it to automate tasks like compilation, versioning, testing, deploying etc.
 To use Grunt, first create a gruntfile.js file where you configure the different tasks that will be performed by Grunt. Then launch the different tasks with command line by giving the name of the task you want to run.
@@ -92,9 +96,9 @@ Extract from `Gruntfile.js` :
 		...
 	});
 
-# Frontend <a id="Frontend"></a>
+## Frontend <a id="Frontend"></a>
 
-## Bower <a id="Bower"></a>
+### Bower <a id="Bower"></a>
 
 **Bower** is a tool for managing web dependencies for the front-end : frameworks, libraries, assets and utilities. Bower uses a flat dependency tree, requiring only one version for each package, reducing page load to a minimum. It works by fetching and installing packages, taking care of finding and downloading. Bower keeps track of these packages in a manifest file `bower.json`.
 
@@ -134,7 +138,7 @@ A version can be :
 - semver version : `1.2.3`
 - version range : `>=1.2.`, `~2.1.2`
 
-## Bootstrap <a id="Bootstrap"></a>
+### Bootstrap <a id="Bootstrap"></a>
 
 **Bootstrap** is the most popular HTML, CSS and Javascript framework for developing faster and easier front-end web project. It is a free collection of HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components. 
 
@@ -158,7 +162,7 @@ An example of a simple form and a button, wrapped by two columns and a row :
 	</div>		
 
 
-## AngularJS <a id="AngularJS"></a>
+### AngularJS <a id="AngularJS"></a>
 
 **AngularJS** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
 
@@ -194,7 +198,7 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 With this code, the chat messages are stored in the scope in the variable chatMessages. Angular generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
 The function syncUpdates provided by the scaffolding provides a dynamic update of the chat messages with Socket.IO.
 
-## PDF.js <a id="PDF.js"></a>
+### PDF.js <a id="PDF.js"></a>
 
 **PDF.js** is a JavaScript library intended to render PDF files using the HTML5 Canvas. It relies on the use of promises.
 
@@ -242,9 +246,9 @@ Extract from "attendLectureController.js" :
         document.getElementById('page_num').textContent = num;
     }
 
-# Backend
+## Backend <a id="Backend"></a>
 
-## Jade <a id="Jade"></a>
+### Jade <a id="Jade"></a>
 
 **Jade** is a template engine implemented with JavaScript for server side templating in NodeJS, at the request processing time. The client sends
 an HTTP request. The server builds a model and injects it into a compiled template. The result is sent back to the client. 
@@ -290,7 +294,7 @@ Result in HTML :
 	<input type="text" placeholder="Write a title" ng-model="newLectureModelTitle" class="form-control"/>
 
 
-## Stylus <a id="Stylus"></a>
+### Stylus <a id="Stylus"></a>
 
 **Stylus** is a dynamic stylesheet language, an expressive CSS preprocessor syntax for NodeJS. Compared to CSS, with Stylus, we can omit braces, semi-colons, colons, and we can define functions.
 
@@ -309,12 +313,12 @@ An example from `giveLecture.styl` :
 	.col1on3
 	    width:25%
 
-## NPM
+### NPM <a id="NPM"></a>
 
 NPM is a package manager for Node.js. It manages this framwork's dependencies in the back-end.
-The file "package.json" contains the packages that NPM will install when the command "npm install" is issued in the same folder as the file. It this file you specify the packages and their version.
+The file `package.json` contains the packages that NPM will install when the command `npm install` is issued in the same folder as the file. It this file you specify the packages and their version.
 
-Extract from "package.json"
+Extract from `package.json`
 
     "dependencies": {
        "express": "~4.0.0",
@@ -325,7 +329,7 @@ Extract from "package.json"
         ...
       }
 
-## Node.js and Express
+### Node.js and Express <a id="Node.js_and_Express"></a>
 
 Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
 
@@ -333,7 +337,7 @@ Node.js is our back-end technology. To ease the creation of our project, a web a
 
 In the code shown below, just a few lines are enough to initialise a HTTP server running in Node.js with the express framework and expose our web application. As we can see, Express makes it really easy. This code was generated by Yeoman, our scaffolding tool.
 
-Extract from "app.js" in the "server" folder (so on the back-end)
+Extract from `app.js` in the `server` folder (so on the back-end)
 
     ...
     var express = require('express');
@@ -349,14 +353,15 @@ Extract from "app.js" in the "server" folder (so on the back-end)
     ...
     exports = module.exports = app;
 	
-## Amazon S3
+### Amazon S3 <a id="Amazon_S3"></a>
+
 To store the PDF files we use Amazon S3. But to prevent it from being filled and keep it free, the PDFs are deleted after 5 days !
 However the database of the project is not cleaned the same way and so after 5 days there will still be a link to the deleted file in the database.
-To upload files on Amazon S3 we use the aws-sdk-js bower package.
+To upload files on Amazon S3 we use the `aws-sdk-js` bower package.
 The Amazon S3 bucket has been configured to allow CORS access to allow us to retreive the PDF files.
 The upload is done in the front end on the client.
 
-Extract from "mainController.js"
+Extract from `mainController.js` :
 
     // Configure The S3 Object
     AWS.config.update({ accessKeyId: $scope.creds.access_key, secretAccessKey: $scope.creds.secret_key });
@@ -372,37 +377,26 @@ Extract from "mainController.js"
 
 After the upload on Amazon S3 is complete, the URL to the PDF is inserted in the database as a LectureModel.
 
-## MongoDB
+### MongoDB <a id="MongoDB"></a>
 
-## Mongoose
+### Mongoose <a id="Mongoose"></a>
 
-Source code organization
 ----------------------------------
 
-## client/
+# Implementations <a id="Implementations"></a>
 
-
-## server/
-
-
-Implementation of the chat feature
-----------------------------------
-
- 
-
-Implementation of the slide-show feature
-----------------------------------------
+## Implementation of the slide-show feature <a id="Implementation_of_the_slide-show_feature"></a>
 
 The sequence diagrams in this chapter show simplified invocation chains. For example, the
-socket.on() method invocations are not visible in the sequence diagram to
+`socket.on()` method invocations are not visible in the sequence diagram to
 provide an easy to read diagram.
 
-### Joining a lecture
+### Joining a lecture <a id="Joining_a_lecture"></a>
 
 To join a lecture, a user has to enter the "user-friendly" id of the lecture
-given by the teacher. A first GET request is done to retreive the \_id property
+given by the teacher. A first GET request is done to retreive the _id property
 of the lecture generated by mongoose. The user is then redirected on the page to
-attend to a lecture with the lecture \_id as a query string parameter.
+attend to a lecture with the lecture _id as a query string parameter.
 
 When a user arrives on the pages to give or attend a lecture, a second GET
 request is done to retreive the informations of the lecture with the query
@@ -414,18 +408,18 @@ that is known by the application.
 
 ![](SlideshowLoad.png)
 
-### Slideshow - control system (the "Next" and "Previous" buttons)
+### Slideshow - control system (the "Next" and "Previous" buttons) <a id="Slideshow_-_control_system"></a>
 
 When the teacher change the displayed slide, the current page number is updated
 in the database. This allows the student to join a started lecture and receive
 the page number their client must display when getting the informations about
 the lecture.
 
-The teacher also sends a message to the server with the socket.emit() function
+The teacher also sends a message to the server with the `socket.emit()` function
 of the socket.io library. Which then broadcast the message to all the students
-with the socket.broadcast.emit() function. The message contain the new page
+with the `socket.broadcast.emit()` function. The message contain the new page
 number to display and the id of the lecture given by the teacher. The event name
-related to the socket.io message is \`changePage\`.
+related to the `socket.io` message is `changePage`.
 
 We have to send the lecture id because every students are receiving the messages
 and they have to filter them to only react (and display the new slide) to the
@@ -434,26 +428,28 @@ all messages if they have disabled the slide synchronisation.
 
 ![](SlideshowControl.png)
 
-Issues encountered during the project
 -------------------------------------
 
-### User roles
+# Issues encountered during the project <a id="Issues_encountered_during_the_project"></a>
+
+
+## User roles <a id="User_roles"></a>
 
 The role of the users (Student or Teacher) give them different rights. For
 example, only teachers are allowed to upload a new slide deck and start a
-lecture. There is an issue with asynchronous code in the Auth module provided by
+lecture. There is an issue with asynchronous code in the `Auth` module provided by
 the scaffolding (angular-fullstack) we use.
 
-The problem is that currentUser = User.get(); triggers an asynchronous HTTP
+The problem is that `currentUser = User.get();` triggers an asynchronous HTTP
 call, and that currentUser is not immediately set (it is a non-blocking call).
 Since the promise is resolved immediately, clients are lead to believe that the
 login process has completed and that all user data is available, whereas it is
 in fact still in flight. We fixed this issue by using the provided
-isLoggedInAsync() function, but the different forms that allow only teachers to
+`isLoggedInAsync()` function, but the different forms that allow only teachers to
 do tasks are still displayed for students even though they are not working for
 them (clicking on the buttons will not trigger the action).
 
-### Amazon S3 credentials
+## Amazon S3 credentials <a id="Amazon_S3_credentials"></a>
 
 To allow the client to get the PDF files stored on Amazon S3, we have to give
 him the user credentials of the Amazon user we created. We first put them in our
