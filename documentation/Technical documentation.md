@@ -410,6 +410,40 @@ After the upload on Amazon S3 is complete, the URL to the PDF is inserted in the
 
 ### Mongoose <a id="Mongoose"></a>
 
+Mongoose is an ODM (Document Mapping system) working with MongoDB.
+We use it in our project.
+In Mongoose, you define schemas representing a MongoDB documents. You then construct documents with a constructor called "model" and then you persist them into the database.
+
+In the code below, we define a Mongoose schema called ChatSchema for chat messages which are called "chat".
+
+Extract from "chat.model.js" :
+
+	var mongoose = require('mongoose'),
+		Schema = mongoose.Schema;
+	var ChatSchema = new Schema({
+	  lectureId: String,
+	  content: String,
+	  author: String,
+	  time: String
+	});
+	module.exports = mongoose.model('Chat', ChatSchema);
+	
+Extract from "chat.controller.js" :
+
+	// Updates an existing chat in the DB.
+	exports.update = function(req, res) {
+	  if(req.body._id) { delete req.body._id; }
+	  //find the chat message to update
+	  Chat.findById(req.params.id, function (err, chat) {
+		if (err) { return handleError(res, err); }
+		if(!chat) { return res.send(404); }
+		//update the chat message
+		var updated = _.merge(chat, req.body);
+		...
+	  });
+	};
+	
+
 ----------------------------------
 
 # Implementations <a id="Implementations"></a>
