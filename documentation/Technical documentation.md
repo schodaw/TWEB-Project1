@@ -57,27 +57,44 @@ Generates a new route :
 
 ### Grunt.js <a id="Grunt.js"></a>
 
-**Grunt.js** is a JavaScript based task runner and using JSON for configuration. It is used to automate repetitive tasks in our development workflow. We use it to automate tasks like compilation, versioning, testing, deploying etc. 
-
-
-For preview the app on local machine : 
-
-	grunt server
+**Grunt.js** is a JavaScript based task runner and using JSON for configuration. It is used to automate repetitive tasks in our development workflow. We use it to automate tasks like compilation, versioning, testing, deploying etc.
+To use Grunt, first create a gruntfile.js file where you configure the different tasks that will be performed by Grunt. Then launch the different tasks with command line by giving the name of the task you want to run.
 
 For building in the `dist` folder  : 
 
 	grunt build
 
-Commit and push the resulting build to heroku, :
+For previewing the app on the local machine : 
+
+	grunt serve
+
+Commit and push the resulting build to heroku (must be executed in the /dist folder) :
 
 	grunt buildcontrol:heroku
 
+Extract from `Gruntfile.js` :
+
+	// Define the configuration for all the tasks
+	grunt.initConfig({
+		// Project settings
+		pkg: grunt.file.readJSON('package.json'),
+		yeoman: {
+		  // configurable paths
+		  client: require('./bower.json').appPath || 'client',
+		  dist: 'dist'
+		},
+		express: {
+		  options: {
+			port: process.env.PORT || 9000
+		},
+		...
+	});
 
 ## Frontend <a id="Frontend"></a>
 
 ### Bower <a id="Bower"></a>
 
-**Bower** is a tool for managing web dependencies for the front-end : frameworks, libraries, assets and utilities. Bower uses a flat dependency tree, requiring only one version for each package, reducing page load to a minimum. It works by fetching and installing packages, taking care of finding and downloading. Bower keeps track of these packages in a manifest file `bower.json`
+**Bower** is a tool for managing web dependencies for the front-end : frameworks, libraries, assets and utilities. Bower uses a flat dependency tree, requiring only one version for each package, reducing page load to a minimum. It works by fetching and installing packages, taking care of finding and downloading. Bower keeps track of these packages in a manifest file `bower.json`.
 
 Install packages to the folder `bower_components` and update the file `bower.json`:
 
@@ -141,15 +158,15 @@ An example of a simple form and a button, wrapped by two columns and a row :
 
 ### AngularJS <a id="AngularJS"></a>
 
-**AngularJS** is an open-source web application framework for client-side model-view-controller which allows to develop single-page application. 
+**AngularJS** is an open-source web application framework for client-side model-view-controller architecture which allows to develop single-page applications. 
 
-It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables.
+It works by reading the HTML page, which has embedded into it additional tag attributes. Those attributes are interpreted as directives telling Angular to bind input or output parts of the page to a model that is represented by JavaScript variables. The binding is two-ways.
 
 An example of the directive `ng-repeat` and the variable `chat` :
 
 With `$scope`, we can expose data and function to our view :
 
-`giveLecture.controller.js`
+`giveLecture.controller.js` :
 
 	$scope.chatMessages = [];
 
@@ -164,15 +181,16 @@ With `$scope`, we can expose data and function to our view :
 
 In the view, we use the **directive** `ng-repeat` and **variable** `chat` to refer to the scope : 
 
-`giveLecture.jade`
+`giveLecture.jade` :
 
-	hr
-	.col-md-1.col-centered.col1on3 {{chat.time}}
-	.col-md-1.col-centered.col2on3 {{chat.author}}
-	.col-md-1.col-centered.col3on3 {{chat.content}} 
+	.row.no-glutter(ng-repeat='chat in chatMessages' ng-init='scrollDown()')
+	 hr
+	  .col-md-1.col-centered.col1on3 {{chat.time}}
+	  .col-md-1.col-centered.col2on3 {{chat.author}}
+	  .col-md-1.col-centered.col3on3 {{chat.content}} 
 	
-The binding is two-ways.
-
+With this code, the chat messages are stored in the scope in the variable chatMessages. Angular generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
+The function syncUpdates provided by the scaffolding provides a dynamic update of the chat messages with Socket.IO.
 
 ### PDF.js <a id="PDF.js"></a>
 
@@ -180,6 +198,47 @@ The binding is two-ways.
 
 The function `renderParge(pageNumber)` gets page info from document, resize canvas accordingly, and render page. The function `queueRenderPage(pageNumber)` handles the queue of pages rendering. The three functions `onPrevPage()`, `onNextPage()` and `changePage(pageNumber)` allow to change the page
 
+Extract from "attendLectureController.js" :
+
+    var pdfDoc = null,
+      pageNum = 1,
+      pageRendering = false,
+      pageNumPending = null,
+      scale = 1,
+      canvas = document.getElementById('the-canvas'),
+      ctx = canvas.getContext('2d');
+	...
+	//retreiving the PDF file
+	PDFJS.getDocument(lecture.pdfPath).then(function (pdfDoc_) {
+		pdfDoc = pdfDoc_;
+		//display the number of pages of the PDF
+		document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+		// Initial/first page rendering
+		renderPage(pageNum);
+	});
+	...
+	function renderPage(num) {
+        pageRendering = true;
+        // Using promise to fetch the page
+        pdfDoc.getPage(num).then(function(page) {
+          ...
+          var renderTask = page.render(renderContext);
+
+          // Wait for rendering to finish
+          renderTask.promise.then(function () {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+              // New page rendering is pending
+              renderPage(pageNumPending);
+              pageNumPending = null;
+            }
+          });
+        });
+
+        // Update page counters
+        document.getElementById('page_num').textContent = num;
+    }
 
 
 ### Jade <a id="Jade"></a>
