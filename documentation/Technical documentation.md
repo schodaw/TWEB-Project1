@@ -21,6 +21,7 @@ This section targets people who wish to know more about how our <a href="http://
 		* [Stylus](#Stylus)
 		* [NPM](#NPM)
 		* [Node.js and Express](#Node.js_and_Express)
+		* [Socket.IO](#Socket.IO)
 		* [Amazon S3](#Amazon_S3)
 		* [MongoDB](#MongoDB)
 		* [Mongoose](#Mongoose)
@@ -352,6 +353,10 @@ Extract from `app.js` in the `server` folder (so on the back-end)
     });
     ...
     exports = module.exports = app;
+
+### Socket.IO <a id="Socket.IO"></a>
+
+
 	
 ### Amazon S3 <a id="Amazon_S3"></a>
 
