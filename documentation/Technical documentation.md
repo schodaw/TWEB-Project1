@@ -5,7 +5,7 @@ This section targets people who wish to know more about how our <a href="http://
 
 ---
 
-# Summary
+# Summary <a id="Summary"></a>
 
 * [**Techniques**](#Techniques)
 	* [*REST API*](#REST_API)
@@ -37,7 +37,7 @@ This section targets people who wish to know more about how our <a href="http://
 
 ------------
 
-# Techniques <a id="Techniques"></a>
+# Techniques <a id="Techniques"></a> 
 
 ## REST API <a id="REST_API"></a>
 
@@ -76,6 +76,8 @@ Extract from `api/lecture/index.js` :
 	//delete a lecture
 	router.delete('/:id', controller.destroy);
 	
+[(Up)](#Summary)
+
 ---	
 
 # Frameworks and Libraries <a id="Frameworks_and_Libraries"></a>
@@ -140,6 +142,8 @@ Extract from `Gruntfile.js` :
 		...
 	});
 
+[(Up)](#Summary)
+
 ## Frontend <a id="Frontend"></a>
 
 ### Bower <a id="Bower"></a>
@@ -182,6 +186,8 @@ A version can be :
 - semver version : `1.2.3`
 - version range : `>=1.2.`, `~2.1.2`
 
+[(Up)](#Summary)
+
 ### Bootstrap <a id="Bootstrap"></a>
 
 **Bootstrap** is the most popular HTML, CSS and Javascript framework for developing faster and easier front-end web project. It is a free collection of HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components. 
@@ -205,6 +211,7 @@ An example of a simple form and a button, wrapped by two columns and a row :
 	  </div>
 	</div>		
 
+[(Up)](#Summary)
 
 ### Angular.js <a id="Angular.js"></a>
 
@@ -241,6 +248,8 @@ In the view, we use the **directive** `ng-repeat` and **variable** `chat` to ref
 	
 With this code, the chat messages are stored in the scope in the variable chatMessages. Angular.js generates a new line for every chat message to display in HTML it's attributes "time", "author" and "content".
 The function syncUpdates provided by the scaffolding provides a dynamic update of the chat messages with Socket.IO.
+
+[(Up)](#Summary)
 
 ### PDF.js <a id="PDF.js"></a>
 
@@ -290,6 +299,8 @@ Extract from "attendLectureController.js" :
         document.getElementById('page_num').textContent = num;
     }
 
+[(Up)](#Summary)
+
 ## Backend <a id="Backend"></a>
 
 ### Jade <a id="Jade"></a>
@@ -337,6 +348,7 @@ Result in HTML :
 
 	<input type="text" placeholder="Write a title" ng-model="newLectureModelTitle" class="form-control"/>
 
+[(Up)](#Summary)
 
 ### Stylus <a id="Stylus"></a>
 
@@ -373,6 +385,8 @@ Extract from `package.json`
         ...
       }
 
+[(Up)](#Summary)
+
 ### Node.js and Express <a id="Node.js_and_Express"></a>
 
 Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
@@ -396,6 +410,8 @@ Extract from `app.js` in the `server` folder (so on the back-end)
     });
     ...
     exports = module.exports = app;
+
+[(Up)](#Summary)
 
 ### Socket.IO <a id="Socket.IO"></a>
 
@@ -424,7 +440,9 @@ Extract from "attendLectureController.js" :
             queueRenderPage(data.pageNum);
         }
     });
-	
+
+[(Up)](#Summary)
+
 ### Amazon S3 <a id="Amazon_S3"></a>
 
 To store the PDF files we use Amazon S3. But to prevent it from being filled and keep it free, the PDFs are deleted after 5 days !
@@ -448,6 +466,8 @@ Extract from `mainController.js` :
     }
 
 After the upload on Amazon S3 is complete, the URL to the PDF is inserted in the database as a LectureModel.
+
+[(Up)](#Summary)
 
 ### MongoDB <a id="MongoDB"></a>
 
@@ -503,6 +523,7 @@ Extract from "chat.controller.js" :
 	  });
 	};
 	
+[(Up)](#Summary)
 
 ----------------------------------
 
@@ -531,6 +552,8 @@ that is known by the application.
 
 ![](SlideshowLoad.png)
 
+[(Up)](#Summary)
+
 ### Slideshow - control system (the "Next" and "Previous" buttons) <a id="Slideshow_-_control_system"></a>
 
 When the teacher change the displayed slide, the current page number is updated
@@ -550,6 +573,8 @@ ones that concern the lecture they are attending. The students will also ignore
 all messages if they have disabled the slide synchronisation.
 
 ![](SlideshowControl.png)
+
+[(Up)](#Summary)
 
 -------------------------------------
 
@@ -580,3 +605,5 @@ code on our Git repository but Amazon forgive us to make the credentials
 publicly available for security reasons. To resolve the problem we had to delete
 the user credentials, create new ones and only add them in the code published on
 heroku.
+
+[(Up)](#Summary)
