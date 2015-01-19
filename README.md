@@ -51,7 +51,7 @@ X = not working
 
 
 #Pending work#
-- Manage users roles for functionality access. (For the moment a student can create a lecture for example.)
+- Change pages content with users roles. (For the moment, students see HTML forms for functionnalities they don't have access to. But the forms don't work when they use it.)
 
 #PDF slide deck storage
 The PDFs are stored on a Amazon S3 bucket.
