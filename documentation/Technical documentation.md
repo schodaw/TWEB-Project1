@@ -7,6 +7,8 @@ This section targets people who wish to know more about how our <a href="http://
 
 # Summary
 
+* [**Techniques**](#Techniques)
+	* [*REST API*](#REST_API)
 * [**Frameworks and Libraries**](#Frameworks_and_Libraries)
 	* [*Scaffolding and Pipelining*](#Scaffolding_and_Pipelining)
 		* [Yo](#Yo)
@@ -34,6 +36,45 @@ This section targets people who wish to know more about how our <a href="http://
 	* [*Amazon S3 credentials*](#Amazon_S3_credentials)
 
 ------------
+
+# Techniques <a id="Techniques"></a>
+
+## REST API <a id="REST_API"></a>
+
+A REST API is a type of Web Service interface and is based on the core components of the Web architecture :
+- ressources are exposed
+- URLs identify them
+- HTTP methods expose operations applicable to resources
+- content negociation for transfering machine-understable payloads
+
+In our application we use a REST API to provide CRUD operations.
+- Create to create a new element (for example add a chat message or a lecture model) with POST
+- Read to get the content of an element (for example getting the pdf file of a lecture) with GET
+- Update to update info about a ressource (for example change the page number of a lecture) with PUT
+- Delete to delete an element (not used in our application) with DELETE
+
+On the server side, the file `routes.js` imports the routes defined for the REST API in the files `index.js` of each REST API ressource (in the folder server/API).
+The routes are defined with the middleware `Router` of Express.js.
+
+Extract from `api/lecture/index.js` :
+
+	var router = express.Router();
+
+	//get all the lectures
+	router.get('/', controller.index);
+	//get a specific lecture by giving the lecture id
+	router.get('/:id', controller.show);
+	//get the chat messages of a lecture by giving the lecture id
+	router.get('/:id/chats', controller.showChat);
+	//get a lecture by it's UserFriendlyId
+	router.get('/byUserFriendlyId/:id', controller.getByUserfriendlyId);
+	//create a new lecture
+	router.post('/', controller.create);
+	//update a lecture
+	router.put('/:id', controller.update);
+	router.patch('/:id', controller.update);
+	//delete a lecture
+	router.delete('/:id', controller.destroy);
 
 # Frameworks and Libraries <a id="Frameworks_and_Libraries"></a>
 
